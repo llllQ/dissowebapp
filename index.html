@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" type="text/css" href="./styles/loginStyle.css">
     <title>Sign in to Feedme</title>
 </head>
 <body>
     <div class="contentForm">
         <h3>Login</h3>
-        <input type="email" id="txtUsername" required minlength="4" maxlength="20" placeholder="Enter Your Email...">
+        <input type="email" id="txtUsername" required minlength="7" placeholder="Enter Your Email...">
         <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Enter Your Password...">
         <button id="btnLogin" onclick="login()">Login</button>
+        <br>
+        <h4>Or</h4>
+        <br>
+        <button id="btnGoogleAuth" onclick="gAuth()">Sign in With Google</button>
     </div>
-    
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
@@ -30,6 +34,7 @@
       firebase.initializeApp(config);
     </script>
     <script src="./scripts/loginScript.js"></script>
+    <script src="./scripts/googleauth.js"></script>
     
 </body>
 </html>
