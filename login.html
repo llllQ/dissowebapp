@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./styles/loginStyle.css">
+    <title>Sign in to Feedme</title>
+</head>
+<body>
+    <div class="contentForm">
+        <h3>Login</h3>
+        <input type="email" id="txtUsername" required minlength="4" maxlength="20" placeholder="Enter Your Email...">
+        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Enter Your Password...">
+        <button id="btnLogin" onclick="login()">Login</button>
+    </div>
+    
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAitFMM7mywp1BwUvRbpbvdiNFS3v2Bzcc",
+        authDomain: "disso-70-100.firebaseapp.com",
+        databaseURL: "https://disso-70-100.firebaseio.com",
+        projectId: "disso-70-100",
+        storageBucket: "disso-70-100.appspot.com",
+        messagingSenderId: "1083959403368"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="./scripts/loginScript.js"></script>
+    
+</body>
+</html>

@@ -35,6 +35,7 @@ header {
     position: fixed;
     width: 100%;
     z-index: 999;
+    /* height: 5%; */
 }
 
 .nav-toggle {
@@ -104,7 +105,18 @@ nav ul{
 
 nav li {
     margin-bottom: 1em;
-    margin-left: 1em;
+    /* margin-left: 1em; */
+    margin-left: 2.5%;
+}
+
+nav .profile {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--brand-clr);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+    margin-top: 1em;
+    margin-bottom: 0.5rem;
 }
 
 nav .sectionTitle{
@@ -114,7 +126,6 @@ nav .sectionTitle{
     text-transform: uppercase;
     opacity: 0;
     transition: opacity 150ms ease-in-out;
-    
     padding-top: 15px;
 }
 
@@ -135,7 +146,7 @@ nav a{
 }
 
 nav a:hover{
-    color: #000;
+    color: var(--brand-clr);
 }
 
 .nav-toggle:checked ~ nav{
@@ -145,6 +156,11 @@ nav a:hover{
 }
 
 .nav-toggle:checked ~ nav a{
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+
+.nav-toggle:checked ~nav .profile{
     opacity: 1;
     transition: opacity 250ms ease-in-out 250ms;
 }
