@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,600,800');
 
 
 :root{
-    --brand-clr: rgba(103, 216, 101, 0.85);
-    --select-clr: rgba(0, 170, 101, 0.85);
+    --brand-clr: rgb(47, 228, 44);
+    --select-clr: #55D6BE;
 }
 
 html{
@@ -18,29 +18,45 @@ body {
     /* filter: blur(8px);
     -webkit-filter: blur(8px); */
     /* background-repeat: no-repeat; */
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 400;
+	font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    overflow: hidden;
 }
 
+.container{
+    height: 100vh;
+    /* background: rgb(66,246,132); */
+    background: linear-gradient(90deg,  rgba(39,230,159,1) 0%, rgba(66,246,132,1) 100%);
+}
 
+/* 
 .backgroundImage{
     display: block;
-    background-image: url("../resources/background.jfif");
+    background-image: url("../resources/background.jfif"); */
     /* background-color: red; */
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
     /* width: 100%; */
-    height: 100%;
+    /* height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* visibility: visible; */
+    visibility: hidden;
 
     
-}
+} */
+
+/* .brandingImg{
+    background-color: red;
+    background-image: url("../resources/greenfern.jfif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40%;
+} */
 
 input, button {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .contentForm {
@@ -52,15 +68,17 @@ input, button {
     margin-top: auto;
     margin-bottom: auto;
     top: 0px; */
-    position: absolute;
+    /* position: absolute;
     margin: auto;
     top: 15%;
     bottom:15%;
     right:0;
-    left:0;
-    background: rgba(255,255,255,0.8);
+    left:0; */
+
+
+    /* background: rgba(255,255,255,0.8); */
     width: 70%;
-    /* margin: 0 auto; */
+    margin: 0 auto;
     padding: 10%;
     /* margin-top: 25%; */
     border-radius: 5px;
@@ -68,61 +86,142 @@ input, button {
     
 }
 
-.contentForm h3, h4{
+.contentForm h3{
     text-align: center;
+    text-transform: uppercase;
+    color: #fff;
 }
 
 .contentForm h3{
-
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 30%;
 }
 
+.contentForm p{
+    margin-top: 15%;
+    margin-bottom: 40%;
+    padding-left: 4%;
+    font-weight: 400;
+    color: rgba(255,255,255, 0.7);
+    cursor: pointer;
+}
+
+
 .contentForm input{
-    display: block;
-    border: 1px solid var(--brand-clr);
+    /* display: block;
+    border: none;
+    border-bottom: 1px solid var(--brand-clr);
     border-radius: 5px;
     background: #fff;
     padding: 15px;
     outline: none;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 7%;
+    margin-bottom: 7%; */
+    display: block;
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: rgba(255,255,255,0);
+    padding: 15px;
+    margin-bottom: 10%;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 1.3rem;
+
+}
+
+.contentForm ::placeholder{
+    color: rgba(255,255,255, 0.9);
 }
 
 .contentForm input:focus{
-    border: 1px solid var(--select-clr);
-    /* border: 1px solid red; */
+    border-bottom: 1px solid var(--select-clr);
     
 }
 
+
 .contentForm button{
     cursor: pointer;
-    background: var(--brand-clr);
-    color: #fff;
-    border: 1px solid var(--brand-clr);
+    background: #fff;
+    color: var(--brand-clr);
+    /* border: 1px solid var(--brand-clr); */
+    border: none;
     border-radius: 5px;
     padding: 15px;
     display: block;
-    width: 100%;
+    margin: 0 auto;
+    width: 50%;
     transition: 0.3s;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
-    box-shadow: 0px 3px 2px 2px rgba(53, 53, 53, 0.15);
+    box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15);
+    font-size: 1.3rem;
+    margin-bottom: 10%;
+    text-transform: uppercase;
 }
 
 .contentForm button:hover{
     background: #fff;
     color: var(--brand-clr);
+    box-shadow: 0px 4px 3px 3px rgba(53, 53, 53, 0.15);
     /* border: 1px solid var(--brand-clr); */
 
 }
 
 @media screen and (min-width: 1000px){
-    .backgroundImage{
-        visibility: hidden;
+
+    .container{
+        background: #fff;
     }
 
     .contentForm{
         width: 20%;
         margin-top: 0%;
+        top: 10%;
+        bottom:15%;
+    }
+
+    .contentForm h3{
+        color: var(--brand-clr);
+    }
+
+    .contentForm p{
+        color: rgba(0,0,0,0.7);
+    }
+
+    .contentForm input{
+        display: block;
+        border: none;
+        border-bottom: 1px solid var(--brand-clr);
+        /* border: 1px solid var(--brand-clr); */
+        /* border-radius: 5px; */
+        background: #fff;
+        padding: 15px;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 7%;
+    }
+
+    .contentForm ::placeholder{
+        color: rgba(0,0,0, 0.7);
+    }
+
+    .contentForm button{
+        cursor: pointer;
+        background: var(--brand-clr);
+        color: #fff;
+        border: 1px solid var(--brand-clr);
+        border-radius: 5px;
+        padding: 15px;
+        display: block;
+        width: 100%;
+        transition: 0.3s;
+        -webkit-transition: 0.3s;
+        -moz-transition: 0.3s;
+        box-shadow: 0px 3px 2px 2px rgba(53, 53, 53, 0.15);
     }
 }

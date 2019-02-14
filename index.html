@@ -9,18 +9,22 @@
     <title>Sign in to Feedme</title>
 </head>
 <body>
-  <div class="backgroundImage"><br>
-  </div>
+  <section class="container">
     <div class="contentForm">
         <h3>Login</h3>
-        <input type="email" id="txtUsername" required minlength="7" placeholder="Enter Your Email...">
-        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Enter Your Password...">
+        <input type="email" id="txtUsername" required minlength="7" placeholder="Email">
+        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Password">
+        <p class="forgot">Forgot Password?</p>
+        <!-- <label for="txtUsername" class="txtUsername">
+            <input type="email" id="txtUsername" placeholder="Username">
+            <span class="label">Username</span>
+            <span class="border"></span>
+        </label> -->
+
         <button id="btnLogin" onclick="login()">Login</button>
-        <br>
-        <h4>Or</h4>
-        <br>
         <button id="btnGoogleAuth" onclick="gAuth()">Sign in With Google</button>
     </div>
+  </section>
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script>
