@@ -1,4 +1,5 @@
 var fname="";
+var newUser = false;
 
 var loginUnameLabel = document.getElementById("lblTxtUsername");
 var loginPwordLabel = document.getElementById("lblTxtPassword");
@@ -24,7 +25,13 @@ firebase.auth().onAuthStateChanged(function(user){
       // User is signed in.
     var currUser = firebase.auth().currentUser;
     updateName(currUser, fname);
-    console.log(currUser);
+    // console.log(currUser);
+    console.log(newUser);
+    if (newUser != false){
+      console.log("hello31");
+      writeUserData(currUser.uid,fname,currUser.email);
+    }
+    
     window.location = "./html/InventoryFreezer.html";
 
     } else {
@@ -53,6 +60,9 @@ function login(){
             loginUnameInput.classList.add("inputInvalid");
             loginUnameLabel.innerHTML="Invalid Email Format";
           break; 
+          case "auth/user-not-found":
+          loginUnameLabel.innerHTML="This User Doesn't Exist";
+          break;
         }
       });
 }
@@ -69,6 +79,7 @@ function updateName(user, name){
 
 function register(){
   resetLbl();
+  newUser = true;
     const userEmail = document.getElementById("regUsername").value;
     const userPassword = document.getElementById("regPassword").value;
     fname = document.getElementById("regFname").value;
@@ -88,9 +99,10 @@ function register(){
           regUnameLabel.innerHTML="Invalid Email Format";
         break; 
       }
-
-      window.alert("Error: " + error.message);
     });
+
+    // var testUser = firebase.auth().currentUser;
+    // writeUserData(testUser.uid,fname,userEmail);
 }
 
 function toggleDisplay(){

@@ -21,6 +21,7 @@ body {
 
 .signinContainer{
     background: linear-gradient(90deg,  rgba(39,230,159,1) 0%, rgba(66,246,132,1) 100%);
+    height: 100vh;
 }
 
 .registerContainer{
@@ -54,7 +55,7 @@ input, button {
 
 .contentForm p{
     margin-top: 15%;
-    margin-bottom: 20%;
+    margin-bottom: 15%;
     padding-left: 4%;
     font-size: 2.5em;
     font-weight: 400;
@@ -118,7 +119,7 @@ input, button {
     -moz-transition: 0.3s;
     box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15);
     font-size: 2.5rem;
-    margin-bottom: 10%;
+    margin-bottom: 7%;
     text-transform: uppercase;
 }
 

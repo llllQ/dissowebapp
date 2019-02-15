@@ -8,3 +8,13 @@ var config = {
     messagingSenderId: "1083959403368"
   };
   firebase.initializeApp(config);
+var database = firebase.database();
+
+
+function writeUserData(userId, displayname, email) {
+  console.log("here");
+  firebase.database().ref('users/' + userId).set({
+    name: displayname,
+    email: email
+  });
+}
