@@ -9,11 +9,11 @@
     <title>Sign in to Feedme</title>
 </head>
 <body>
-  <section class="container">
+  <section class="signinContainer">
     <div class="contentForm">
         <h3>Login</h3>
-        <input type="email" id="txtUsername" required minlength="7" placeholder="Email">
-        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Password">
+        <input type="email" id="txtUsername" required minlength="7" placeholder="Email" onfocus="this.placeholder = ''">
+        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Password" onfocus="this.placeholder = ''">
         <p class="forgot" onclick="document.documentElement.requestFullscreen();">Forgot Password?</p>
         <!-- <label for="txtUsername" class="txtUsername">
             <input type="email" id="txtUsername" placeholder="Username">
@@ -23,6 +23,17 @@
 
         <button id="btnLogin" onclick="login()">Login</button>
         <button id="btnGoogleAuth" onclick="gAuth()">Sign in With Google</button>
+    </div>
+  </section>
+
+  <section class="registerContainer">
+    <div class="contentForm">
+      <h3>Sign Up</h3>
+        <input type="email" id="regUsername" required minlength="7" placeholder="Email" onfocus="this.placeholder = ''">
+        <input type="password" id="regPassword" required minlength="4" maxlength="20" placeholder="Password" onfocus="this.placeholder = ''">
+        <input type="text" id="regFname" required minlength="4" placeholder="First Name" onfocus="this.placeholder = ''">
+        <!-- <input type="text" id="regSname" required minlength="4" placeholder="Last Name" onfocus="this.placeholder = ''"> -->
+        <button id="btnRegister" onclick="register()">Register</button>
     </div>
   </section>
 
@@ -39,8 +50,9 @@
       };
       firebase.initializeApp(config);
     </script>
-    <script src="./scripts/loginScript.js"></script>
     <script src="./scripts/googleauth.js"></script>
+    <script src="./scripts/loginScript.js"></script>
+    
     
 </body>
 </html>

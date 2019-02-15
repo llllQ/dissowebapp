@@ -2,12 +2,12 @@ firebase.auth().onAuthStateChanged(function(user){
     if (user) {
         // User is signed in.
         //   alert(user + " is signed in");
-        var user = firebase.auth().currentUser;
-        console.log(user);
-        if (user.displayName != null){
-            document.getElementById("profileName").innerHTML = "Hi! " + user.displayName;
+        var user1 = firebase.auth().currentUser;
+        console.log(user1);
+        if (user1.displayName != null){
+            document.getElementById("profileName").innerHTML = "Hi! " + user1.displayName;
         } else{
-            document.getElementById("profileName").innerHTML = "Hi! " + user.email;
+            document.getElementById("profileName").innerHTML = "Hi! " + user1.email;
         }
         
     } else {
