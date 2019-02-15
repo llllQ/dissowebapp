@@ -9,49 +9,39 @@
     <title>Sign in to Feedme</title>
 </head>
 <body>
-  <section class="signinContainer">
+  <section class="signinContainer" id="signin">
     <div class="contentForm">
         <h3>Login</h3>
-        <input type="email" id="txtUsername" required minlength="7" placeholder="Email" onfocus="this.placeholder = ''">
-        <input type="password" id="txtPassword" required minlength="4" maxlength="20" placeholder="Password" onfocus="this.placeholder = ''">
-        <p class="forgot" onclick="document.documentElement.requestFullscreen();">Forgot Password?</p>
-        <!-- <label for="txtUsername" class="txtUsername">
-            <input type="email" id="txtUsername" placeholder="Username">
-            <span class="label">Username</span>
-            <span class="border"></span>
-        </label> -->
+        <label for="txtUsername" id="lblTxtUsername" class="inputLabel"></label>
+        <input type="email" id="txtUsername"class="inputbox" required  placeholder="Email" onclick="resetInput(this.id)" onfocus="this.placeholder = ''">
+        <label for="txtPassword" id=lblTxtPassword class="inputLabel"></label>
+        <input type="password" id="txtPassword" class="inputbox" required  placeholder="Password" onclick="resetInput(this.id)"  onfocus="this.placeholder = ''">
+        <p class="forgot" onclick="">Forgot Password?</p>
 
         <button id="btnLogin" onclick="login()">Login</button>
         <button id="btnGoogleAuth" onclick="gAuth()">Sign in With Google</button>
+        <button onclick="toggleDisplay()">Register</button>
     </div>
   </section>
 
-  <section class="registerContainer">
-    <div class="contentForm">
+  <section class="registerContainer" id="signup">
+    <div class="contentForm"> 
       <h3>Sign Up</h3>
-        <input type="email" id="regUsername" required minlength="7" placeholder="Email" onfocus="this.placeholder = ''">
-        <input type="password" id="regPassword" required minlength="4" maxlength="20" placeholder="Password" onfocus="this.placeholder = ''">
-        <input type="text" id="regFname" required minlength="4" placeholder="First Name" onfocus="this.placeholder = ''">
-        <!-- <input type="text" id="regSname" required minlength="4" placeholder="Last Name" onfocus="this.placeholder = ''"> -->
+        <label for="regUsername" id="lblRegUsername" class="inputLabel"></label>
+        <input type="email" id="regUsername" class="inputbox" required placeholder="Email" onclick="resetInput(this.id)" onfocus="this.placeholder = ''">
+        <input type="text" id="regFname" class="inputbox" required placeholder="Name (Optional)" onfocus="this.placeholder = ''">
+        <label for="regPassword" id="lblRegPassword" class="inputLabel"></label>
+        <input type="password" id="regPassword" class="inputbox" required placeholder="Password" onclick="resetInput(this.id)" onfocus="this.placeholder = ''">
+        
         <button id="btnRegister" onclick="register()">Register</button>
+        <button id="btnLoginToggle" onclick="toggleDisplay()">Back to Login</button>
     </div>
   </section>
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyAitFMM7mywp1BwUvRbpbvdiNFS3v2Bzcc",
-        authDomain: "disso-70-100.firebaseapp.com",
-        databaseURL: "https://disso-70-100.firebaseio.com",
-        projectId: "disso-70-100",
-        storageBucket: "disso-70-100.appspot.com",
-        messagingSenderId: "1083959403368"
-      };
-      firebase.initializeApp(config);
-    </script>
+    <script src="./scripts/firebaseinit.js"></script>
     <script src="./scripts/googleauth.js"></script>
-    <script src="./scripts/loginScript.js"></script>
+    <script src="./scripts/loginApp.js"></script>
     
     
 </body>
