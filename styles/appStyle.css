@@ -14,10 +14,12 @@
 
 body {
 	margin: 0;
-	background: #bdbdbd;
+	background: #fff;
 	font-family: 'Work Sans', sans-serif;
 	font-weight: 400;
 }
+
+/* NAVBAR STYLING */
 
 header {
     background: var(--brand-clr);
@@ -71,12 +73,8 @@ header {
         top: 1.3rem;
     }
 
-    /* .nav-toggle-label span:hover{
-        background: #000;
-    } */
-
-    nav {
-        font-weight: 00;
+    header nav {
+        font-weight: 400;
         position: absolute;
         text-align: left;
         top: 100%;
@@ -134,7 +132,6 @@ header {
         text-transform: uppercase;
         opacity: 0;
         transition: opacity 150ms ease-in-out;
-
     }
 
     nav a:hover{
@@ -161,9 +158,44 @@ header {
         opacity: 1;
         transition: opacity 250ms ease-in-out 250ms;
     }
+/* END OF NAVBAR HAMBURGER STYLING */
+
+/* Bottom NAVBAR STYLING*/
+
+#footer{
+    /* color: #000; */
+    color: #bdbdbd;
+    position: absolute;
+    z-index: 998;
+    width: 100%;
+    bottom: 0;
+    padding-left: 20%;
+    padding-right: 20%;
+   
+    text-align: center
+
+}
+
+#footer #btmNav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#footer li{
+    
+    /* display: inline; */
+    font-size: 4em;
+    /* justify-content: space-evenly; */
+    margin:0;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
 
 
+/* End of bottom navbar styling */
 
+/* Desktop View Styling */
 @media screen and (min-width: 1000px){
 
     .logo{
@@ -203,10 +235,6 @@ header {
     .nav-toggle-label span:after{
         top: 10px;
     }
-
-    /* .nav-toggle-label span:hover{
-        background: #000;
-    } */
 
     nav {
         position: absolute;
