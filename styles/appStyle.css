@@ -189,7 +189,7 @@ header {
 
 
 #main .foodItem {
-    height: 11em;
+    /* height: 11em; */
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
