@@ -24,8 +24,8 @@ body {
 
 /* NAVBAR STYLING */
 
-#contentWrapper{
-    height: 8%;
+.contentWrapper{
+    height: 7%;
 }
 
 header {
@@ -44,6 +44,8 @@ header {
 .logo{
     color: #fff;
     font-size: 4rem;
+    margin-top:3%;
+    margin-bottom:3%;
 }
 
 .nav-toggle-label{
@@ -167,20 +169,71 @@ header {
     }
 /* END OF NAVBAR HAMBURGER STYLING */
 
-/* Main  */
+/* Main  *************************************************************************** */
 
 #main {
-    display: block;
-    background: linear-gradient(23deg, #a80189 0%, #f9003a 100%);
-    height: 200vh;
+    padding-top: 2%;
+    display: flex;
+    /* background: linear-gradient(23deg, #a80189 0%, #f9003a 100%); */
+    /* height: 200vh; */
+    justify-content: center;
+
     /* top: 10%; */
 }
 
-#main h1{
-    color: #fff;
-    text-align: center;
+#main ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-/* End of MAIN Styling */
+
+
+#main .foodItem {
+    height: 11em;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #bdbdbd;
+    display: grid;
+    grid-template:
+        "img ws name"
+        "img ws expiry"
+        "img ws quantity";
+        grid-template-columns: 1.5fr 1fr 4fr;
+}
+
+#main .foodItem img{
+    border-radius: 100%;
+    border: 2px solid var(--brand-clr);
+    width:100%;
+    height:100%;
+    /* display: grid; */
+    grid-area: img;
+    /* height: */
+}
+
+#main .foodItem p{
+    border-bottom: 1px solid var(--brand-clr);
+    font-size: 2em;
+    margin: 0;
+    margin-bottom: 3%;
+}
+
+#main .foodItem .foodName{
+    grid-area: name;
+}
+
+#main .foodItem .foodExp{
+    grid-area: expiry;
+}
+
+#main .foodItem .foodQuantity{
+    grid-area: quantity;
+}
+
+/* End of MAIN Styling ******************************************************************** */
 
 /* Bottom NAVBAR STYLING*/
 
@@ -189,13 +242,13 @@ header {
     border-top-width: 1%;
     border-top-color: #bdbdbd;
     border-top-style: solid;
-    background-color: #fff;
+    background-color:#fff;
     color: #bdbdbd;
     position: fixed;
     z-index: 998;
     width: 100%;
     bottom: 0;
-    padding-top: 2%;
+    padding-top: 1%;
     padding-left: 10%;
     padding-right: 10%;
    
