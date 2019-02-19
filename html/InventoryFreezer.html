@@ -12,16 +12,16 @@
 <body>
     <div class="contentWrapper">
     <header>
-        <h1 class="logo">Fridge Inventory</h1>
+        <h1 class="logo" id="pageTitle">Fridge Inventory</h1>
         <input type="checkbox" id="nav-toggle" class="nav-toggle">
         <nav>
             <ul>
                 <li class="profile" id="profileName">Hi! Matt Penlington</li>
                 <li class="sectionTitle">Food Inventory</li>
                 <!-- <li><a href="#"><i class="fas fa-home"></i> Pantry</a></li> -->
-                <li><a href="#"> Pantry</a></li>
-                <li><a href="#"> Fridge</a></li>
-                <li><a href="#"> Freezer</a></li>
+                <li><a onclick="populateList('pantry')"> Pantry</a></li>
+                <li><a onclick="populateList('fridge')"> Fridge</a></li>
+                <li><a onclick="populateList('freezer')"> Freezer</a></li>
                 <li><a href="#"> Add Item</a></li>
                 <li class="sectionTitle">Settings</li>
                 <li><a href="#"> App Settings</a></li>
@@ -40,7 +40,7 @@
 
     <section id="main">
         <!-- <h1>Pantry Food Inventory</h1> -->
-        <ul>
+        <ul id="foodList">
             <li class="foodItem">
                 <img class="foodIcon" src="../resources/carrot.webp">
                 <p class="foodName">Carrots</p>
