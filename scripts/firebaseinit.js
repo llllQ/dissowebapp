@@ -10,8 +10,13 @@ var config = {
   firebase.initializeApp(config);
 var database = firebase.database();
 
+/**
+ * This function is called when a new user is registered. It creates an entry for them in the user and inventory tables in the firebase database.
+ * @param  {String} userId current user's id String used to create a flat hierarchy noSQL database entry in firebase
+ * @param  {String} displayname registration field stored in the user table on firebase
+ * @param  {String} email registration field stored in the user table on firebase
+ */
 function writeUserData(userId, displayname, email) {
-  // console.log("here");
   firebase.database().ref('users/' + userId).set({
     name: displayname,
     email: email

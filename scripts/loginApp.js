@@ -11,20 +11,33 @@ var regPwordLabel = document.getElementById("lblRegPassword");
 var regUnameInput = document.getElementById("regUsername");
 var regPwordInput = document.getElementById("regPassword");
 
+/**
+ * This function is called after login/register button is pressed
+ * Function resets values of username and password input fields to be blank, ready for new input values to be entered
+ */
 function resetLbl(){
   loginUnameLabel.innerHTML="";
   loginPwordLabel.innerHTML ="";
 }
-
+/**
+ * This function removes the invalid input class from an input element
+ * @param  {} elementid html element id referring to data input field on index.html
+ */
 function resetInput(elementid){
   document.getElementById(elementid).classList.remove("inputInvalid");
 }
 
+/**
+ * This function is triggered every time the authentication state of the user in changed (logged in/out) within the login/register html page
+ * If a user is signed in, they get redirected to the main app page
+ * If a user is not signed in, nothing happens
+ * @param  {} user firebase user reference object
+ */
 firebase.auth().onAuthStateChanged(function(user){
     if (user) {
       // User is signed in.
     var currUser = firebase.auth().currentUser;
-    updateName(currUser, fname);
+    // updateName(currUser, fname);
     // console.log(currUser);
     console.log(newUser);
     if (newUser != false){
@@ -38,12 +51,15 @@ firebase.auth().onAuthStateChanged(function(user){
         console.log("not signed in");
     }
   });
-
+/**
+ * This function is called on login button press. 
+ * When called it takes the values from username and password input boxes and checks them against firebase records
+ * Error messages given out as relevant based on incorrect user input
+ */
 function login(){
-  resetLbl();
     const userEmail = document.getElementById("txtUsername").value;
     const userPassword = document.getElementById("txtPassword").value;
-
+    resetLbl();
     firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -67,22 +83,27 @@ function login(){
       });
 }
 
-function updateName(user, name){
-    user.updateProfile({displayName: name.valueOf()}).then(function() {
-      // Update successful.
-      console.log("Update Successful");
-    }).catch(function(error) {
-      // An error happened.
-      console.log("Update Failed: "+error.message);
-    });
-}
+// function updateName(user, name){
+//     user.updateProfile({displayName: name.valueOf()}).then(function() {
+//       // Update successful.
+//       console.log("Update Successful");
+//     }).catch(function(error) {
+//       // An error happened.
+//       console.log("Update Failed: "+error.message);
+//     });
+// }
 
+/**
+ * This function is called upon a register new user press.
+ * When called it takes fields username, password and display-name and passes them to firebase to ensure a user-record does not already exist
+ * If valid, a new entry is added to the user database
+ */
 function register(){
-  resetLbl();
   newUser = true;
     const userEmail = document.getElementById("regUsername").value;
     const userPassword = document.getElementById("regPassword").value;
     fname = document.getElementById("regFname").value;
+    resetLbl();
 
     firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).catch(function(error) {
       // Handle Errors here.
@@ -104,7 +125,10 @@ function register(){
     // var testUser = firebase.auth().currentUser;
     // writeUserData(testUser.uid,fname,userEmail);
 }
-
+/**
+ * This function is used to switch index.html from sign-in to register sections.
+ * Once called, displays one section and hides another
+ */
 function toggleDisplay(){
   resetLbl();
   var reg = document.getElementById("signup");
@@ -119,7 +143,4 @@ function toggleDisplay(){
     log.style.display = "inherit";
     reg.style.display = "none";
   }
-  
-  // console.log(document.getElementById("signup").style.display);
-  // console.log("login container display val: " + log.style.display);
 }
