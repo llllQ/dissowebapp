@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
     <link rel="stylesheet" type="text/css" href="../styles/appStyle.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    
+    <!-- <script src="../scripts/app.js"></script> -->
     <title>Food</title>
 </head>
 <body>
@@ -19,9 +19,9 @@
                 <li class="profile" id="profileName">Hi! Matt Penlington</li>
                 <li class="sectionTitle">Food Inventory</li>
                 <!-- <li><a href="#"><i class="fas fa-home"></i> Pantry</a></li> -->
-                <li><a onclick="populateList('pantry')"> Pantry</a></li>
-                <li><a onclick="populateList('fridge')"> Fridge</a></li>
-                <li><a onclick="populateList('freezer')"> Freezer</a></li>
+                <li><a onclick="appfunctions.populateList('pantry')"> Pantry</a></li>
+                <li><a onclick="appfunctions.populateList('fridge')"> Fridge</a></li>
+                <li><a onclick="appfunctions.populateList('freezer')"> Freezer</a></li>
                 <li><a href="#"> Add Item</a></li>
                 <li class="sectionTitle">Settings</li>
                 <li><a href="#"> App Settings</a></li>
@@ -38,7 +38,7 @@
     </header>
 </div>
 
-    <section id="main">
+    <section id="main"onclick="appfunctions.minimiseHamburger()">
         <!-- <h1>Pantry Food Inventory</h1> -->
         <ul id="foodList">
             <li class="foodItem">
@@ -52,7 +52,7 @@
     </section>
 
     <div class="contentWrapper">
-        <section id="footer">
+        <section id="footer"onclick="appfunctions.minimiseHamburger()">
             <nav>
                 <ul id="btmNav">
                     <li id="option1"><a href="#"></a><i class="fas fa-minus"></i></li>

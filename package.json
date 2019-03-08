@@ -1,0 +1,29 @@
+{
+  "name": "dissowebapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules/"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/llllQ/dissowebapp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/llllQ/dissowebapp/issues"
+  },
+  "homepage": "https://github.com/llllQ/dissowebapp#readme",
+  "devDependencies": {
+    "jest": "^24.3.0"
+  }
+}
