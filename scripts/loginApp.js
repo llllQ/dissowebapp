@@ -45,7 +45,7 @@ firebase.auth().onAuthStateChanged(function(user){
       writeUserData(currUser.uid,fname,currUser.email);
     }
     
-    window.location = "./html/InventoryFreezer.html";
+    window.location = "./html/Inventory.html";
 
     } else {
         console.log("not signed in");
