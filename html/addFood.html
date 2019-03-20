@@ -70,15 +70,35 @@
           id="mobileCanvas"
         ></canvas>
       </div>
-      <div class="controls">
-        <!-- <div id="whiteSpace"></div> -->
-        <div class="select">
-          <select id="videoSource"></select>
+      <!-- <div class="controls">
+        <div id="selectBtn">
+          <button id="change">Change Camera</button>
+        </div>
+        <div id="select" class="hidden">
+          <select id="videoSource">
+          </select>
         </div>
         <button id="go"><i class="fas fa-camera"></i><br>Scan Item</button>
         <div id="output"><span id="dbr"></span></div>
-      </div>
+      </div> -->
     </section>
+    <div class="contentWrapper">
+      <section id="footer">
+        <nav>
+          <ul id="btmNav">
+            <li id="output"><span id="dbr"></span></li>
+
+            <li id="go"><a href="#"><i class="fas fa-camera"></i></a></li>
+
+            <li id="select">
+              <select id="videoSource"></select>
+            </li>
+            <p id="label1"></p>
+            <p id="label2">Take Picture</p>
+          </ul>
+        </nav>
+      </section>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="../scripts/firebaseinit.js"></script>

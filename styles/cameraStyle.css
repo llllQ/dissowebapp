@@ -196,12 +196,57 @@ header {
     height: 60%;
 }
 
-.controls{
+/* controls section VVV */
+
+#footer{
+    /* color: #000; */
+    border-top-width: 1%;
+    border-top-color: #bdbdbd;
+    border-top-style: solid;
+    background-color:#fff;
+    color: #bdbdbd;
+    position: fixed;
+    z-index: 998;
+    width: 100%;
+    bottom: 0;
+    padding-top: 1%;
+    padding-left: 10%;
+    padding-right: 10%;
+   
+    text-align: center
+
+}
+
+#footer a{
+    opacity: 1;
+    color: #bdbdbd;
+    font-size: 1em;
+}
+
+#footer #btmNav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#footer li{
+    font-size: 4em;
+    margin:0;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+
+
+#footer p{
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+/* .controls{
     padding-top: 2%;
     padding-left: 15%;  
     padding-right: 15%;
     height: 40%;
-    /* background-color: blue; */
     font-size: 2em;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -209,14 +254,7 @@ header {
     
 }
 
-.controls #select{
-    grid-area: rightItem;
-    text-align: center;
-}
-
-.controls #go{
-    grid-area: midItem;
-    /* width: 30%; */
+.controls button{
     background-color: var(--brand-clr);
     color: white;
     border-radius: 10px;
@@ -225,12 +263,28 @@ header {
     text-align: center;
     box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15);
     font-size: 2.5rem;
+}
+
+.controls #select{
+    grid-area: rightItem;
+}
+
+
+
+.hidden{
+    display: none;
+}
+
+.controls #go{
+    grid-area: midItem; */
+    /* width: 30%; */
+  
     /* position: fixed; */
     /* bottom: 7%; */
     /* left: calc(50% - 15%); */
 }
 
-.controls i{
+/* .controls i{
     font-size: 4rem;
 }
 
@@ -240,7 +294,7 @@ header {
     text-transform: uppercase;
     
     
-}
+} */
 
 
 /* #camera, #camera--view, #camera--sensor, #camera--output{

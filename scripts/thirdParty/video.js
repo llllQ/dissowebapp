@@ -115,7 +115,7 @@ function scanBarcode() {
   var data = null,
     context = null,
     width = 0,
-    height = 0,
+    height = 0, 
     dbrCanvas = null;
 
   if (isPC) {
