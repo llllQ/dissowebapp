@@ -33,11 +33,7 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   console.log(String.fromCharCode.apply(null, result));
   barcode_result.textContent = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
-  if (isPC) {
-    canvas.style.display = 'block';
-  } else {
-    mobileCanvas.style.display = 'block';
-  }
+
 };
 
 // check devices
