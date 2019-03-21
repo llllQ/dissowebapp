@@ -178,13 +178,12 @@ header {
 }
 
 .cameraFeed #crosshair {
-    /* float: left; */
     position: absolute;
     opacity: 0.3;
     height: 15%;
     width: 30%;
     left: calc(50% - 15%);
-    top: calc(50% - 7.5%);
+    top: calc(45% - 7.5%);
 }
 .cameraFeed video{
     width: 100%;
