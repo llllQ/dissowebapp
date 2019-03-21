@@ -250,6 +250,7 @@ header {
 }
 #footer #output{
     overflow: hidden;
+    font-size: 1.8rem;
 }
 
 
