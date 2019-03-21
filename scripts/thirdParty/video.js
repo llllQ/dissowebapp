@@ -9,10 +9,10 @@ var buttonGo = document.getElementById('go');
 var barcode_result = document.getElementById('dbr');
 
 var isPaused = false;
-var videoWidth = 640,
-  videoHeight = 480;
-var mobileVideoWidth = 240,
-  mobileVideoHeight = 320;
+var videoWidth = 0,
+  videoHeight = 0;
+var mobileVideoWidth = 0,
+  mobileVideoHeight = 0;
 var isPC = true;
 
 var ZXing = null;
@@ -140,6 +140,7 @@ function scanBarcode() {
   var barcodeContext = barcodeCanvas.getContext('2d');
   var imageWidth = vid.videoWidth, imageHeight = vid.videoHeight;
   barcodeContext.drawImage(videoElement, 0, 0, imageWidth, imageHeight);
+
   // read barcode
   var imageData = barcodeContext.getImageData(0, 0, imageWidth, imageHeight);
   var idd = imageData.data;
