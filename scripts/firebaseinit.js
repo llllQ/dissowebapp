@@ -10,6 +10,8 @@ var config = {
   firebase.initializeApp(config);
 var database = firebase.database();
 
+var foodDBRef = firebase.database().ref('fooddb/');
+
 /**
  * This function is called when a new user is registered. It creates an entry for them in the user and inventory tables in the firebase database.
  * @param  {String} userId current user's id String used to create a flat hierarchy noSQL database entry in firebase
@@ -27,3 +29,41 @@ function writeUserData(userId, displayname, email) {
     pantry: "a"
   });
 }
+
+
+function readFoodDbData(foodid){
+  var data;
+  foodDBRef.on('value', function(snapshot){
+    data = snapshot.child(foodid).val();
+  });
+  console.log("value of returnable in readFooddbData function: "+data);
+  return data;
+}
+
+
+// function readFoodDbData(foodid ){
+//   // var database = firebase.database();
+//   // var userId = firebase.auth().currentUser.uid;
+//   var fooddbref = firebase.database().ref('/fooddb/' + foodid);
+//   var temp = fooddbref.once('value').then(function(snapshot){
+//       var foodItem ={
+//       name: snapshot.val().name || 'unknown',
+//       quantity: snapshot.val().quantity || 'unknown',
+//       expiry: snapshot.val().expiry || 'unknown',
+//       category: snapshot.val().category || 'unknown'    
+//     };
+//     // console.log(foodItem); 
+//     return foodItem;
+    
+//   });
+//   // fooddbref.off();
+//   return temp;
+
+//   return output = temp.then(function(value){
+//     console.log("val here: "+value.name);
+//     return value
+//   });
+//   console.log("val of output: "+output);
+//   return output;
+    
+// }

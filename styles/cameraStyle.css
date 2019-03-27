@@ -177,6 +177,12 @@ header {
     overflow: hidden;
 }
 
+/* Styling for barcode scanning canvas */
+
+.scanner{
+    /* display: none; */
+}
+
 .cameraFeed{
     height: 100%;
 }
@@ -197,22 +203,60 @@ header {
 .outputArea canvas{
     display: none;
 }
+/* End of barcode scanner styling */
 
-/* .outputArea #pcCanvas{
-    width: 640px;
-    height: 480px;
+
+/* Start of confirmation styling */
+
+.foodInfo{
+    display: none;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
-.outputArea #mobileCanvas{
-    width: 240px;
-    height: 320px;
-} */
+.foodInfo h1{
+    text-align: center;
+    font-size: 4em;
+}
+.foodInfo h3{
+    font-size: 2.4em;
+}
+
+.foodInfo img{
+    position: relative;
+    border-radius: 100%;
+    width: 25%;
+    height: 25%;
+    left: calc(50% - 12.5%);
+}
+
+.foodInfo input{
+    display: block;
+    border: none;
+    border-bottom: 3px solid var(--brand-clr);
+    background: rgba(255,255,255,0);
+    padding: 5%;
+    margin-bottom: 10%;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    color: var(--brand-clr);
+    font-size: 2.5rem;
+}
+
+
+/* End of confirmation styling */
+
 
 
 
 /* controls section VVV */
+#confirmFooter{
+    display: none;
+}
 
-#footer{
+.footer{
+    /* display: none; */
     /* color: #000; */
     border-top-width: 1%;
     border-top-color: #bdbdbd;
@@ -231,24 +275,24 @@ header {
 
 }
 
-#footer a{
+.footer a{
     opacity: 1;
     color: #bdbdbd;
     font-size: 1em;
 }
 
-#footer #btmNav{
+.footer #btmNav{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-#footer li{
+.footer li{
     font-size: 6em;
     margin:0;
     margin-left: 20%;
     margin-right: 20%;
 }
-#footer #output{
+.footer #output{
     overflow: hidden;
     font-size: 1.8rem;
     padding-top: 30%;
@@ -256,7 +300,7 @@ header {
 
 
 
-#footer p{
+.footer p{
     margin-top: 0;
     font-size: 1.8rem;
 }

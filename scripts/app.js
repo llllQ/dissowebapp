@@ -15,6 +15,7 @@ const appfunctions = {
   /**
    * this function 
    */
+
   minimiseHamburger() {
     var toggle = document.getElementById("nav-toggle");
     if (toggle.checked == true) {

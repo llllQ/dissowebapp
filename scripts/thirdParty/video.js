@@ -1,3 +1,13 @@
+var scanningArea = document.getElementById('scanner');
+var confirmationArea = document.getElementById('foodInfo');
+var foodNameDisplay = document.getElementById('foodName');
+var foodExpiryDisplay = document.getElementById('foodExpiry');
+var foodQuantityDisplay = document.getElementById('foodQuantity');
+var confirmFooter = document.getElementById('confirmFooter');
+var scanFooter = document.getElementById('scanFooter');
+var backtoScan = document.getElementById("returnToScan");
+var barcodeVal = "";
+
 var videoElement = document.querySelector('video');
 var canvas = document.getElementById('pcCanvas');
 var mobileCanvas = document.getElementById('mobileCanvas');
@@ -31,8 +41,25 @@ tick();
 var decodeCallback = function (ptr, len, resultIndex, resultCount) {
   var result = new Uint8Array(ZXing.HEAPU8.buffer, ptr, len);
   console.log(String.fromCharCode.apply(null, result));
-  barcode_result.textContent = String.fromCharCode.apply(null, result);
+  // barcode_result.textContent = String.fromCharCode.apply(null, result);
+  barcodeVal = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
+  if (barcodeVal != ""){
+    var foodObj = readFoodDbData(barcodeVal);
+    if (foodObj != null){
+      scanningArea.style.display = "none";
+      confirmationArea.style.display = "block";
+      scanFooter.style.display = "none";
+      confirmFooter.style.display = "block";
+      console.log("val of foodObj in videojs: ");
+      console.log(foodObj);
+      foodNameDisplay.value = foodObj.name;
+      foodExpiryDisplay.value = foodObj.expiry;
+      foodQuantityDisplay.value = foodObj.quantity;
+    }
+    
+
+  }
 
 };
 
@@ -85,8 +112,16 @@ function dataURItoBlob(dataURI) {
   });
 }
 
+backtoScan.onclick = function(){
+  scanningArea.style.display = "block";
+  confirmationArea.style.display = "none";
+  scanFooter.style.display = "block";
+  confirmFooter.style.display = "none";
+}
+
 // add button event
 buttonGo.onclick = function () {
+  barcodeVal = "";
   if (isPC) {
     canvas.style.display = 'none';
   } else {

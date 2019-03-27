@@ -14,7 +14,11 @@
     />
     <!-- <script src="../scripts/app.js"></script> -->
     <title>FoodSmarter</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../resources/logo.png">
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../resources/logo.png"
+    />
   </head>
   <body>
     <div class="contentWrapper">
@@ -47,33 +51,94 @@
     </div>
 
     <section id="main">
-      <div class="cameraFeed">
-        <img id="crosshair" src="../resources/barcode_white.png">
-        <video muted autoplay id="video" ></video>
-      </div>
-      <div class="outputArea">
-        <canvas
-          id="pcCanvas"
-        ></canvas>
-        <canvas
-          id="mobileCanvas"
-        ></canvas>
+      <div class="scanner" id="scanner">
+        <div class="cameraFeed">
+          <img id="crosshair" src="../resources/barcode_white.png" />
+          <video muted autoplay id="video"></video>
+        </div>
+        <div class="outputArea">
+          <canvas id="pcCanvas"></canvas>
+          <canvas id="mobileCanvas"></canvas>
+        </div>
       </div>
 
+      <div class="foodInfo" id="foodInfo">
+        <h1>Confirm Details</h1>
+        <img class="foodIcon" src="../resources/placeholder.jpg" />
+
+        <h3>Item Name</h3>
+        <input id="foodName"class="foodName" type="text" placeholder="Food Name" />
+
+        <h3>Expiration Date</h3>
+        <input id="foodExpiry" class="foodExp" type="text" placeholder="Food Expiry Date" />
+
+        <h3>Quantity</h3>
+        <input id="foodQuantity" class="foodQuantity" type="text" placeholder="Food Quantity" />
+
+        <h3>Category</h3>
+        <div class="radioContainer">
+          <input
+            class="foodCategory"
+            type="radio"
+            name="category"
+            value="pantry"
+            id="pantryRadio"
+          />
+          <label for="pantryRadio">Pantry</label>
+          <input
+            class="foodCategory"
+            type="radio"
+            name="category"
+            value="fridge"
+            id="fridgeRadio"
+          />
+          <label for="fridgeRadio">Fridge</label>
+          <input
+            class="foodCategory"
+            type="radio"
+            name="category"
+            value="freezer"
+            id="freezerRadio"
+          />
+          <label for="freezerRadio">Freezer</label>
+        </div>
+
+        <button id="btnSubmit" onclick="">Add Item</button>
+      </div>
     </section>
     <!-- <div class="contentWrapper"> -->
-      <section id="footer">
+    <section class="footer" id ="scanFooter">
+      <nav>
+        <ul id="btmNav">
+          <li id="output"><span id="dbr"></span></li>
+
+          <li id="go">
+            <a href="#"><i class="fas fa-camera"></i></a>
+          </li>
+
+          <li id="select">
+            <select id="videoSource"></select>
+          </li>
+          <p id="label1"></p>
+          <p id="label2">Scan Item</p>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="footer" id ="confirmFooter">
         <nav>
           <ul id="btmNav">
             <li id="output"><span id="dbr"></span></li>
-
-            <li id="go"><a href="#"><i class="fas fa-camera"></i></a></li>
-
+  
+            <li id="returnToScan">
+              <a href="#"><i class="fas fa-camera"></i></a>
+            </li>
+  
             <li id="select">
               <select id="videoSource"></select>
             </li>
             <p id="label1"></p>
-            <p id="label2">Take Picture</p>
+            <p id="label2">Scan Item</p>
           </ul>
         </nav>
       </section>
