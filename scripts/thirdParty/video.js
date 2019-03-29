@@ -50,6 +50,7 @@ buttonManual.onclick = function() {
   submitButtonDB.style.display = "none";
   scanFooter.style.display = "none";
   confirmFooter.style.display = "block";
+  resetScanEnv();
 };
 
 submitButton.onclick = function() {
