@@ -6,6 +6,10 @@ var foodQuantityDisplay = document.getElementById('foodQuantity');
 var confirmFooter = document.getElementById('confirmFooter');
 var scanFooter = document.getElementById('scanFooter');
 var backtoScan = document.getElementById("returnToScan");
+var submitButton = document.getElementById('btnSubmit');
+var freezerRadio = document.getElementById("freezerRadio");
+var fridgeRadio = document.getElementById('fridgeRadio');
+var pantryRadio = document.getElementById('pantryRadio');
 var barcodeVal = "";
 
 var videoElement = document.querySelector('video');
@@ -24,9 +28,50 @@ var videoWidth = 0,
 var mobileVideoWidth = 0,
   mobileVideoHeight = 0;
 var isPC = true;
-
 var ZXing = null;
 var decodePtr = null;
+
+
+submitButton.onclick = function(){
+  //Food Object creation which will later be written to user's food database
+  var foodObj = {};
+  if (foodNameDisplay.value == ""){
+    alert('boop name red');
+  }else{
+    foodObj.name = foodNameDisplay.value
+  }
+
+  if (foodExpiryDisplay.value == ""){
+    alert("boop expiry red")
+  }else{
+    foodObj.expiry = foodExpiryDisplay.value;
+  }
+
+  if(foodQuantityDisplay.value == ""){
+    alert("boop quantity red");
+  }else{
+    foodObj.quantity = foodQuantityDisplay.value;
+  }
+
+  if (freezerRadio.checked == false && fridgeRadio.checked == false && pantryRadio.checked == false){
+    alert("boop category red");
+  } else{
+    if (freezerRadio.checked = true){
+      foodObj.category = freezerRadio.value;
+    }
+    if (fridgeRadio.checked = true){
+      foodObj.category = fridgeRadio.value;
+    }
+    if (pantryRadio.checked = true){
+      foodObj.category = pantryRadio.value;
+    }
+    // console.log("foodObj val:");
+    // console.log(foodObj);
+  }
+
+  writeFoodInvenData(foodObj);
+
+}
 
 var tick = function () {
   if (window.ZXing) {

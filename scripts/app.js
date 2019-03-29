@@ -11,7 +11,8 @@
 //         // console.log(foodobj);
 //     });
 // }
-const appfunctions = {    
+
+const appfunctions = {   
   /**
    * this function 
    */
@@ -34,6 +35,31 @@ const appfunctions = {
     var heading = document.getElementById("pageTitle");
     heading.innerHTML = foodType + " Inventory";
   },
+
+
+  // readFoodDbData(foodid){
+  //   var data;
+  //   foodDBRef.on('value', function(snapshot){
+  //     data = snapshot.child(foodid).val();
+  //   });
+  //   console.log("value of returnable in readFooddbData function: "+data);
+  //   return data;
+  // },
+
+  // readFoodInvenData(foodType){
+  //   appfunctions.changeTitle(foodType);
+  //   document.getElementById("nav-toggle").checked = false;
+  //   var data;
+  //   var userId = firebase.auth().currentUser.uid;
+  //   var ref = firebase.database().ref("/inventories/" + userId + "/" + foodType + "/");
+  //   ref.on('value', function(snapshot){
+  //     data = snapshot.val();
+  //     console.log(data);
+  //   });
+  //   return data;
+  // },
+
+  
   /**
    * This function displays food items stored in the current user's relevant area from their food inventory in main html section
    * @param  {String} foodType expects one of {"fridge","freezer","pantry"} used during database read request
@@ -45,18 +71,31 @@ const appfunctions = {
     var userId = firebase.auth().currentUser.uid;
     // console.log(userId + "/inventories/" + foodType + "/");
 
-    var storage = firebase
-      .storage()
-      .ref(userId + "/inventories/" + foodType + "/");
     return firebase
       .database()
       .ref("/inventories/" + userId + "/" + foodType + "/")
       .once("value")
       .then(function(snapshot) {
-        var foodArray = snapshot.val();
+        var foodArray = [];
+        snapshot.forEach(ss => {
+          foodArray.push(ss.val());
+        });
+        
         var list = document.getElementById("foodList");
         list.innerHTML = "";
-        // console.log(foodArray);
+        console.log("foodArray val:");
+        console.log(foodArray);
+        
+        // for (i = 1; i < foodArray.length; i++){
+        //   list.innerHTML +=
+        //       "<li class='foodItem'><img class='foodIcon' src='../resources/carrot.webp'><p class='foodName'>" +
+        //       foodArray[i].name +
+        //       "</p> <p class='foodExp'>" +
+        //       foodArray[i].expiry +
+        //       "</p> <p class='foodQuantity'>" +
+        //       element[i].quantity +
+        //       "</p>";
+        // }
         foodArray.forEach(function(element) {
           list.innerHTML +=
             "<li class='foodItem'><img class='foodIcon' src='../resources/carrot.webp'><p class='foodName'>" +

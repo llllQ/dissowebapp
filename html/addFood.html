@@ -67,47 +67,70 @@
         <img class="foodIcon" src="../resources/placeholder.jpg" />
 
         <h3>Item Name</h3>
-        <input id="foodName"class="foodName" type="text" placeholder="Food Name" />
+        <input
+          id="foodName"
+          class="foodName"
+          type="text"
+          placeholder="Food Name"
+        />
 
         <h3>Expiration Date</h3>
-        <input id="foodExpiry" class="foodExp" type="text" placeholder="Food Expiry Date" />
+        <input
+          id="foodExpiry"
+          class="foodExp"
+          type="text"
+          placeholder="Food Expiry Date"
+        />
 
         <h3>Quantity</h3>
-        <input id="foodQuantity" class="foodQuantity" type="text" placeholder="Food Quantity" />
+        <input
+          id="foodQuantity"
+          class="foodQuantity"
+          type="text"
+          placeholder="Food Quantity"
+        />
 
         <h3>Category</h3>
         <div class="radioContainer">
-          <input
-            class="foodCategory"
-            type="radio"
-            name="category"
-            value="pantry"
-            id="pantryRadio"
-          />
-          <label for="pantryRadio">Pantry</label>
-          <input
-            class="foodCategory"
-            type="radio"
-            name="category"
-            value="fridge"
-            id="fridgeRadio"
-          />
-          <label for="fridgeRadio">Fridge</label>
-          <input
-            class="foodCategory"
-            type="radio"
-            name="category"
-            value="freezer"
-            id="freezerRadio"
-          />
-          <label for="freezerRadio">Freezer</label>
+          <label for="pantryRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="pantry"
+              id="pantryRadio"
+            />
+            <span class="pantrySpan">Pantry</span>
+          </label>
+
+          <label for="fridgeRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="fridge"
+              id="fridgeRadio"
+            />
+            <span class="fridgeSpan">Fridge</span>
+          </label>
+
+          <label for="freezerRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="freezer"
+              id="freezerRadio"
+            />
+            <span class="freezerSpan">Freezer</span>
+          </label>
         </div>
 
         <button id="btnSubmit" onclick="">Add Item</button>
       </div>
     </section>
     <!-- <div class="contentWrapper"> -->
-    <section class="footer" id ="scanFooter">
+    <section class="footer" id="scanFooter">
       <nav>
         <ul id="btmNav">
           <li id="output"><span id="dbr"></span></li>
@@ -125,23 +148,23 @@
       </nav>
     </section>
 
-    <section class="footer" id ="confirmFooter">
-        <nav>
-          <ul id="btmNav">
-            <li id="output"><span id="dbr"></span></li>
-  
-            <li id="returnToScan">
-              <a href="#"><i class="fas fa-camera"></i></a>
-            </li>
-  
-            <li id="select">
-              <select id="videoSource"></select>
-            </li>
-            <p id="label1"></p>
-            <p id="label2">Scan Item</p>
-          </ul>
-        </nav>
-      </section>
+    <section class="footer" id="confirmFooter">
+      <nav>
+        <ul id="btmNav">
+          <li id="output"><span id="dbr"></span></li>
+
+          <li id="returnToScan">
+            <a href="#"><i class="fas fa-camera"></i></a>
+          </li>
+
+          <li id="select">
+            <select id="videoSource"></select>
+          </li>
+          <p id="label1"></p>
+          <p id="label2">Scan Item</p>
+        </ul>
+      </nav>
+    </section>
     <!-- </div> -->
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>

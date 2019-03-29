@@ -40,6 +40,17 @@ function readFoodDbData(foodid){
   return data;
 }
 
+function writeFoodInvenData(foodObj){
+  console.log("Write request for food item:");
+  console.log(foodObj);
+  var userId = firebase.auth().currentUser.uid;
+  var childId = new Date().getTime();
+  firebase.database().ref('inventories/' + userId + '/' + foodObj.category + '/' + childId + '/').set({
+    name: foodObj.name,
+    expiry: foodObj.expiry,
+    quantity: foodObj.quantity
+  });
+}
 
 // function readFoodDbData(foodid ){
 //   // var database = firebase.database();

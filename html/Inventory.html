@@ -53,6 +53,7 @@
     <section id="main">
       <!--  onclick="appfunctions.minimiseHamburger()" -->
       <!-- <h1>Pantry Food Inventory</h1> -->
+
       <ul id="foodList">
         <li class="foodItem">
           <img class="foodIcon" src="../resources/placeholder.jpg" />
@@ -80,9 +81,15 @@
         </nav>
       </section>
     </div>
+    
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="../scripts/firebaseinit.js"></script>
+    <script>
+        window.onload = function(){   
+          appfunctions.populateList('fridge');
+        }
+      </script>
 
     <script src="../scripts/checkLoginScript.js"></script>
     <script src="../scripts/app.js"></script>

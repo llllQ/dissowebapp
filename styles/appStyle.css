@@ -174,13 +174,16 @@ header {
 
 #main {
     padding-top: 1.2%;
+    /* display: block; */
     display: flex;
     /* background: linear-gradient(23deg, #a80189 0%, #f9003a 100%); */
     /* height: 200vh; */
     justify-content: center;
+    /* align-items: center  ; */
 
     /* top: 10%; */
 }
+
 
 #main ul{
     margin: 0;
