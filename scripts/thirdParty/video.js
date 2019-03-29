@@ -44,12 +44,13 @@ resetScanEnv = function() {
 };
 
 buttonManual.onclick = function() {
-  scanningArea.style.display = "none";
-  confirmationArea.style.display = "block";
-  submitButton.style.display = "block";
-  submitButtonDB.style.display = "none";
-  scanFooter.style.display = "none";
-  confirmFooter.style.display = "block";
+  alert("test alert");
+  // scanningArea.style.display = "none";
+  // confirmationArea.style.display = "block";
+  // submitButton.style.display = "block";
+  // submitButtonDB.style.display = "none";
+  // scanFooter.style.display = "none";
+  // confirmFooter.style.display = "block";
 };
 
 submitButton.onclick = function() {
