@@ -1,17 +1,3 @@
-// var testUser = firebase.auth().currentUser;
-// writeUserData(testUser.uid,testUser.displayName,testUser.email);
-
-//foreach item in food database where username is same and food type is same create fooditem html item and populate
-//img, food name, food expiry date and food quantity.
-
-// function readData(foodType){
-//     var userId = firebase.auth().currentUser.uid;
-//     return firebase.database().ref('/inventories/' + userId + '/'+foodType+'/').once('value').then(function(snapshot) {
-//         var foodobj = (snapshot.val());
-//         // console.log(foodobj);
-//     });
-// }
-
 const appfunctions = {   
   /**
    * this function 
@@ -25,8 +11,6 @@ const appfunctions = {
     }
   },
 
-
-
   /**
    * this function changes the navbar header to represent the food inventory currently being shown in #main's foodlist
    * @param  {String} foodType expects one of {"fridge","freezer","pantry"}
@@ -35,30 +19,6 @@ const appfunctions = {
     var heading = document.getElementById("pageTitle");
     heading.innerHTML = foodType + " Inventory";
   },
-
-
-  // readFoodDbData(foodid){
-  //   var data;
-  //   foodDBRef.on('value', function(snapshot){
-  //     data = snapshot.child(foodid).val();
-  //   });
-  //   console.log("value of returnable in readFooddbData function: "+data);
-  //   return data;
-  // },
-
-  // readFoodInvenData(foodType){
-  //   appfunctions.changeTitle(foodType);
-  //   document.getElementById("nav-toggle").checked = false;
-  //   var data;
-  //   var userId = firebase.auth().currentUser.uid;
-  //   var ref = firebase.database().ref("/inventories/" + userId + "/" + foodType + "/");
-  //   ref.on('value', function(snapshot){
-  //     data = snapshot.val();
-  //     console.log(data);
-  //   });
-  //   return data;
-  // },
-
   
   /**
    * This function displays food items stored in the current user's relevant area from their food inventory in main html section
@@ -68,7 +28,12 @@ const appfunctions = {
   populateList(foodType) {
     appfunctions.changeTitle(foodType);
     document.getElementById("nav-toggle").checked = false;
-    var userId = firebase.auth().currentUser.uid;
+
+    while (userId == null){
+      var userId = firebase.auth().currentUser.uid;
+      console.log(userId);
+    }
+    
     // console.log(userId + "/inventories/" + foodType + "/");
 
     return firebase
@@ -85,17 +50,6 @@ const appfunctions = {
         list.innerHTML = "";
         console.log("foodArray val:");
         console.log(foodArray);
-        
-        // for (i = 1; i < foodArray.length; i++){
-        //   list.innerHTML +=
-        //       "<li class='foodItem'><img class='foodIcon' src='../resources/carrot.webp'><p class='foodName'>" +
-        //       foodArray[i].name +
-        //       "</p> <p class='foodExp'>" +
-        //       foodArray[i].expiry +
-        //       "</p> <p class='foodQuantity'>" +
-        //       element[i].quantity +
-        //       "</p>";
-        // }
         foodArray.forEach(function(element) {
           list.innerHTML +=
             "<li class='foodItem'><img class='foodIcon' src='../resources/carrot.webp'><p class='foodName'>" +
@@ -105,11 +59,8 @@ const appfunctions = {
             "</p> <p class='foodQuantity'>" +
             element.quantity +
             "</p>";
-          // console.log(element);
         });
       });
-
-    // var document.getElementById
   },
 
   getFoodObjArray(foodType){
@@ -119,13 +70,6 @@ const appfunctions = {
       .ref("/inventories/" + userId + "/" + foodType + "/")
       .once("value")
       .then(function(snapshot) {
-        // console.log("snapshot values");
-        // console.log(snapshot.val());
-        // var foodArray = snapshot.val();
-        // console.log("food array vals");
-        // console.log(foodArray);
-        // return foodArray;
-        // var foodArray = snapshot.val();
         appfunctions.updateHTML(snapshot.val(), userId, foodType);
       });
       
