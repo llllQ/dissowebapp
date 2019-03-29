@@ -30,7 +30,11 @@ function writeUserData(userId, displayname, email) {
   });
 }
 
-
+/**
+ * This function takes a barcode id and retrieves the relevant food JSON object
+ * @param  {} foodid where foodid is the number encoded in the 1-dimensional barcode that has just been scanned by the user.
+ * @returns data object representing the item of food that has just had it's barcode scanned.
+ */
 function readFoodDbData(foodid){
   var data;
   foodDBRef.on('value', function(snapshot){
@@ -40,8 +44,34 @@ function readFoodDbData(foodid){
   return data;
 }
 
+function writeFoodDbData(foodObj, foodid){
+  console.log('Write Request to Food DB for Food Item: ');
+  console.log(foodObj);
+  console.log(foodid);
+  firebase.database().ref('fooddb/' + foodid + '/').set({
+    name: foodObj.name,
+    expiry: foodObj.expiry,
+    quantity: foodObj.quantity,
+    category: foodObj.category
+  }, function(error) {
+    console.log(error);
+    if (error) {
+      // The write failed...
+      console.log('Err writing to food db');
+      return false;
+    } else {
+      // Data saved successfully!
+      return true;
+    }
+  });
+  return true;
+}
+
+/**
+ * @param  {} foodObj
+ */
 function writeFoodInvenData(foodObj){
-  console.log("Write request for food item:");
+  console.log("Write request to Personal Inventory for food item:");
   console.log(foodObj);
   var userId = firebase.auth().currentUser.uid;
   var childId = new Date().getTime();
@@ -49,32 +79,16 @@ function writeFoodInvenData(foodObj){
     name: foodObj.name,
     expiry: foodObj.expiry,
     quantity: foodObj.quantity
+  }, function(error) {
+    console.log(error);
+    if (error) {
+      // The write failed...
+      console.log('err writing to food inventory');
+      return false;
+    } else {
+      // Data saved successfully!
+      return true;
+    }
   });
+  return true;
 }
-
-// function readFoodDbData(foodid ){
-//   // var database = firebase.database();
-//   // var userId = firebase.auth().currentUser.uid;
-//   var fooddbref = firebase.database().ref('/fooddb/' + foodid);
-//   var temp = fooddbref.once('value').then(function(snapshot){
-//       var foodItem ={
-//       name: snapshot.val().name || 'unknown',
-//       quantity: snapshot.val().quantity || 'unknown',
-//       expiry: snapshot.val().expiry || 'unknown',
-//       category: snapshot.val().category || 'unknown'    
-//     };
-//     // console.log(foodItem); 
-//     return foodItem;
-    
-//   });
-//   // fooddbref.off();
-//   return temp;
-
-//   return output = temp.then(function(value){
-//     console.log("val here: "+value.name);
-//     return value
-//   });
-//   console.log("val of output: "+output);
-//   return output;
-    
-// }

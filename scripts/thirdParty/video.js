@@ -1,26 +1,28 @@
-var scanningArea = document.getElementById('scanner');
-var confirmationArea = document.getElementById('foodInfo');
-var foodNameDisplay = document.getElementById('foodName');
-var foodExpiryDisplay = document.getElementById('foodExpiry');
-var foodQuantityDisplay = document.getElementById('foodQuantity');
-var confirmFooter = document.getElementById('confirmFooter');
-var scanFooter = document.getElementById('scanFooter');
+var scanningArea = document.getElementById("scanner");
+var confirmationArea = document.getElementById("foodInfo");
+var foodNameDisplay = document.getElementById("foodName");
+var foodExpiryDisplay = document.getElementById("foodExpiry");
+var foodQuantityDisplay = document.getElementById("foodQuantity");
+var confirmFooter = document.getElementById("confirmFooter");
+var scanFooter = document.getElementById("scanFooter");
 var backtoScan = document.getElementById("returnToScan");
-var submitButton = document.getElementById('btnSubmit');
+var submitButton = document.getElementById("btnSubmit");
+var submitButtonDB = document.getElementById("btnSubmitDB");
 var freezerRadio = document.getElementById("freezerRadio");
-var fridgeRadio = document.getElementById('fridgeRadio');
-var pantryRadio = document.getElementById('pantryRadio');
+var fridgeRadio = document.getElementById("fridgeRadio");
+var pantryRadio = document.getElementById("pantryRadio");
 var barcodeVal = "";
 
-var videoElement = document.querySelector('video');
-var canvas = document.getElementById('pcCanvas');
-var mobileCanvas = document.getElementById('mobileCanvas');
-var ctx = canvas.getContext('2d');
-var mobileCtx = mobileCanvas.getContext('2d');
-var videoSelect = document.querySelector('select#videoSource');
-var videoOption = document.getElementById('videoOption');
-var buttonGo = document.getElementById('go');
-var barcode_result = document.getElementById('dbr');
+var videoElement = document.querySelector("video");
+var canvas = document.getElementById("pcCanvas");
+var mobileCanvas = document.getElementById("mobileCanvas");
+var ctx = canvas.getContext("2d");
+var mobileCtx = mobileCanvas.getContext("2d");
+var videoSelect = document.querySelector("select#videoSource");
+var videoOption = document.getElementById("videoOption");
+var buttonGo = document.getElementById("go");
+var buttonManual = document.getElementById("manualAdd");
+var barcode_result = document.getElementById("dbr");
 
 var isPaused = false;
 var videoWidth = 0,
@@ -31,49 +33,138 @@ var isPC = true;
 var ZXing = null;
 var decodePtr = null;
 
+resetScanEnv = function() {
+  barcodeVal = "";
+  foodNameDisplay.value = "";
+  foodQuantityDisplay.value = "";
+  foodExpiryDisplay.value = "";
+  freezerRadio.checked = false;
+  fridgeRadio.checked = false;
+  pantryRadio.checked = false;
+};
 
-submitButton.onclick = function(){
+buttonManual.onclick = function() {
+  scanningArea.style.display = "none";
+  confirmationArea.style.display = "block";
+  submitButton.style.display = "block";
+  submitButtonDB.style.display = "none";
+  scanFooter.style.display = "none";
+  confirmFooter.style.display = "block";
+};
+
+submitButton.onclick = function() {
   //Food Object creation which will later be written to user's food database
   var foodObj = {};
-  if (foodNameDisplay.value == ""){
-    alert('boop name red');
-  }else{
-    foodObj.name = foodNameDisplay.value
+  if (foodNameDisplay.value == "") {
+    alert("boop name red");
+  } else {
+    foodObj.name = foodNameDisplay.value;
   }
 
-  if (foodExpiryDisplay.value == ""){
-    alert("boop expiry red")
-  }else{
+  if (foodExpiryDisplay.value == "") {
+    alert("boop expiry red");
+  } else {
     foodObj.expiry = foodExpiryDisplay.value;
   }
 
-  if(foodQuantityDisplay.value == ""){
+  if (foodQuantityDisplay.value == "") {
     alert("boop quantity red");
-  }else{
+  } else {
     foodObj.quantity = foodQuantityDisplay.value;
   }
 
-  if (freezerRadio.checked == false && fridgeRadio.checked == false && pantryRadio.checked == false){
+  if (
+    freezerRadio.checked == false &&
+    fridgeRadio.checked == false &&
+    pantryRadio.checked == false
+  ) {
     alert("boop category red");
-  } else{
-    if (freezerRadio.checked = true){
+  } else {
+    if ((freezerRadio.checked = true)) {
       foodObj.category = freezerRadio.value;
     }
-    if (fridgeRadio.checked = true){
+    if ((fridgeRadio.checked = true)) {
       foodObj.category = fridgeRadio.value;
     }
-    if (pantryRadio.checked = true){
+    if ((pantryRadio.checked = true)) {
       foodObj.category = pantryRadio.value;
     }
     // console.log("foodObj val:");
     // console.log(foodObj);
   }
 
-  writeFoodInvenData(foodObj);
+  if (writeFoodInvenData(foodObj)) {
+    scanningArea.style.display = "block";
+    confirmationArea.style.display = "none";
+    scanFooter.style.display = "block";
+    confirmFooter.style.display = "none";
+    alert("Successfully added food item to your inventory");
+    resetScanEnv();
+  } else {
+    alert("Oops, that didn't work, please try again in a few seconds");
+  }
+};
 
-}
+submitButtonDB.onclick = function() {
+  var foodObj = {};
+  if (foodNameDisplay.value == "") {
+    alert("boop name red");
+  } else {
+    foodObj.name = foodNameDisplay.value;
+  }
 
-var tick = function () {
+  if (foodExpiryDisplay.value == "") {
+    alert("boop expiry red");
+  } else {
+    foodObj.expiry = foodExpiryDisplay.value;
+  }
+
+  if (foodQuantityDisplay.value == "") {
+    alert("boop quantity red");
+  } else {
+    foodObj.quantity = foodQuantityDisplay.value;
+  }
+
+  if (
+    freezerRadio.checked == false &&
+    fridgeRadio.checked == false &&
+    pantryRadio.checked == false
+  ) {
+    alert("boop category red");
+  } else {
+    if ((freezerRadio.checked = true)) {
+      foodObj.category = freezerRadio.value;
+    }
+    if ((fridgeRadio.checked = true)) {
+      foodObj.category = fridgeRadio.value;
+    }
+    if ((pantryRadio.checked = true)) {
+      foodObj.category = pantryRadio.value;
+    }
+    // console.log("foodObj val:");
+    // console.log(foodObj);
+  }
+
+  if (writeFoodDbData(foodObj, barcodeVal)) {
+    alert(
+      "Thanks for helping the community, this product has successfully been added to our database"
+    );
+    if (writeFoodInvenData(foodObj)) {
+      scanningArea.style.display = "block";
+      confirmationArea.style.display = "none";
+      scanFooter.style.display = "block";
+      confirmFooter.style.display = "none";
+      alert("Successfully added food item to your inventory");
+      resetScanEnv();
+    } else {
+      alert("Oops, that didn't work, please try again in a few seconds");
+    }
+  } else {
+    alert("Oops, that didn't work, please try again in a few seconds");
+  }
+};
+
+var tick = function() {
   if (window.ZXing) {
     ZXing = ZXing();
     decodePtr = ZXing.Runtime.addFunction(decodeCallback);
@@ -83,17 +174,19 @@ var tick = function () {
 };
 tick();
 
-var decodeCallback = function (ptr, len, resultIndex, resultCount) {
+var decodeCallback = function(ptr, len, resultIndex, resultCount) {
   var result = new Uint8Array(ZXing.HEAPU8.buffer, ptr, len);
   console.log(String.fromCharCode.apply(null, result));
   // barcode_result.textContent = String.fromCharCode.apply(null, result);
   barcodeVal = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
-  if (barcodeVal != ""){
+  if (barcodeVal != "") {
     var foodObj = readFoodDbData(barcodeVal);
-    if (foodObj != null){
+    if (foodObj != null) {
       scanningArea.style.display = "none";
       confirmationArea.style.display = "block";
+      submitButton.style.display = "block";
+      submitButtonDB.style.display = "none";
       scanFooter.style.display = "none";
       confirmFooter.style.display = "block";
       console.log("val of foodObj in videojs: ");
@@ -101,11 +194,18 @@ var decodeCallback = function (ptr, len, resultIndex, resultCount) {
       foodNameDisplay.value = foodObj.name;
       foodExpiryDisplay.value = foodObj.expiry;
       foodQuantityDisplay.value = foodObj.quantity;
+    } else {
+      scanningArea.style.display = "none";
+      confirmationArea.style.display = "block";
+      submitButton.style.display = "none";
+      submitButtonDB.style.display = "block";
+      scanFooter.style.display = "none";
+      confirmFooter.style.display = "block";
+      alert(
+        "Food Item unknown, please add it anyway so we can update our food database so this won't happen next time you scan this item"
+      );
     }
-    
-
   }
-
 };
 
 // check devices
@@ -120,15 +220,24 @@ function browserRedirect() {
   var bIsAndroid = sUserAgent.match(/android/i) == "android";
   var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
   var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-  if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
-    deviceType = 'phone';
+  if (
+    bIsIpad ||
+    bIsIphoneOs ||
+    bIsMidp ||
+    bIsUc7 ||
+    bIsUc ||
+    bIsAndroid ||
+    bIsCE ||
+    bIsWM
+  ) {
+    deviceType = "phone";
   } else {
-    deviceType = 'pc';
+    deviceType = "pc";
   }
   return deviceType;
 }
 
-if (browserRedirect() == 'pc') {
+if (browserRedirect() == "pc") {
   isPC = true;
 } else {
   isPC = false;
@@ -138,13 +247,15 @@ if (browserRedirect() == 'pc') {
 function dataURItoBlob(dataURI) {
   // convert base64/URLEncoded data component to raw binary data held in a string
   var byteString;
-  if (dataURI.split(',')[0].indexOf('base64') >= 0)
-    byteString = atob(dataURI.split(',')[1]);
-  else
-    byteString = unescape(dataURI.split(',')[1]);
+  if (dataURI.split(",")[0].indexOf("base64") >= 0)
+    byteString = atob(dataURI.split(",")[1]);
+  else byteString = unescape(dataURI.split(",")[1]);
 
   // separate out the mime component
-  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+  var mimeString = dataURI
+    .split(",")[0]
+    .split(":")[1]
+    .split(";")[0];
 
   // write the bytes of the string to a typed array
   var ia = new Uint8Array(byteString.length);
@@ -157,20 +268,20 @@ function dataURItoBlob(dataURI) {
   });
 }
 
-backtoScan.onclick = function(){
+backtoScan.onclick = function() {
   scanningArea.style.display = "block";
   confirmationArea.style.display = "none";
   scanFooter.style.display = "block";
   confirmFooter.style.display = "none";
-}
+};
 
 // add button event
-buttonGo.onclick = function () {
+buttonGo.onclick = function() {
   barcodeVal = "";
   if (isPC) {
-    canvas.style.display = 'none';
+    canvas.style.display = "none";
   } else {
-    mobileCanvas.style.display = 'none';
+    mobileCanvas.style.display = "none";
   }
 
   isPaused = false;
@@ -191,7 +302,7 @@ function scanBarcode() {
   var data = null,
     context = null,
     width = 0,
-    height = 0, 
+    height = 0,
     dbrCanvas = null;
 
   if (isPC) {
@@ -209,12 +320,15 @@ function scanBarcode() {
   context.drawImage(videoElement, 0, 0, width, height);
 
   var vid = document.getElementById("video");
-  console.log("video width: " + vid.videoWidth + ", height: " + vid.videoHeight);
+  console.log(
+    "video width: " + vid.videoWidth + ", height: " + vid.videoHeight
+  );
   var barcodeCanvas = document.createElement("canvas");
   barcodeCanvas.width = vid.videoWidth;
   barcodeCanvas.height = vid.videoHeight;
-  var barcodeContext = barcodeCanvas.getContext('2d');
-  var imageWidth = vid.videoWidth, imageHeight = vid.videoHeight;
+  var barcodeContext = barcodeCanvas.getContext("2d");
+  var imageWidth = vid.videoWidth,
+    imageHeight = vid.videoHeight;
   barcodeContext.drawImage(videoElement, 0, 0, imageWidth, imageHeight);
 
   // read barcode
@@ -226,31 +340,34 @@ function scanBarcode() {
     ZXing.HEAPU8[image + j] = idd[i];
   }
   var err = ZXing._decode_any(decodePtr);
-  console.timeEnd('decode barcode');
+  console.timeEnd("decode barcode");
   console.log("error code", err);
   if (err == -2) {
     setTimeout(scanBarcode, 30);
   }
 }
-// https://github.com/samdutton/simpl/tree/gh-pages/getusermedia/sources 
-var videoSelect = document.querySelector('select#videoSource');
+// https://github.com/samdutton/simpl/tree/gh-pages/getusermedia/sources
+var videoSelect = document.querySelector("select#videoSource");
 
-navigator.mediaDevices.enumerateDevices()
-  .then(gotDevices).then(getStream).catch(handleError);
+navigator.mediaDevices
+  .enumerateDevices()
+  .then(gotDevices)
+  .then(getStream)
+  .catch(handleError);
 
 videoSelect.onchange = getStream;
 
 function gotDevices(deviceInfos) {
   for (var i = deviceInfos.length - 1; i >= 0; --i) {
     var deviceInfo = deviceInfos[i];
-    var option = document.createElement('option');
+    var option = document.createElement("option");
     option.value = deviceInfo.deviceId;
-    if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || 'camera ' +
-        (videoSelect.length + 1);
+    if (deviceInfo.kind === "videoinput") {
+      option.text = deviceInfo.label || "camera " + (videoSelect.length + 1);
       videoSelect.appendChild(option);
-    } else {455
-      console.log('Found one other kind of source/device: ', deviceInfo);
+    } else {
+      455;
+      console.log("Found one other kind of source/device: ", deviceInfo);
     }
   }
 }
@@ -265,12 +382,14 @@ function getStream() {
 
   var constraints = {
     video: {
-      deviceId: {exact: videoSelect.value}
+      deviceId: { exact: videoSelect.value }
     }
   };
 
-  navigator.mediaDevices.getUserMedia(constraints).
-    then(gotStream).catch(handleError);
+  navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then(gotStream)
+    .catch(handleError);
 }
 
 function gotStream(stream) {
@@ -279,5 +398,5 @@ function gotStream(stream) {
 }
 
 function handleError(error) {
-  console.log('Error: ', error);
+  console.log("Error: ", error);
 }
