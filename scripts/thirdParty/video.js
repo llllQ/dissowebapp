@@ -195,6 +195,17 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
       foodNameDisplay.value = foodObj.name;
       foodExpiryDisplay.value = foodObj.expiry;
       foodQuantityDisplay.value = foodObj.quantity;
+      switch (foodObj.category) {
+        case "fridge":
+          fridgeRadio.checked = true;
+          break;
+        case "freezer":
+          fridgeRadio.checked = true;
+          break;
+        case "pantry":
+          pantryRadio.checked = true;
+          break;
+      }
     } else {
       scanningArea.style.display = "none";
       confirmationArea.style.display = "block";
