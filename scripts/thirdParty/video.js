@@ -55,23 +55,23 @@ buttonManual.onclick = function() {
 
 submitButton.onclick = function() {
   //Food Object creation which will later be written to user's food database
-  var foodObj = {};
+  var foodObject = {};
   if (foodNameDisplay.value == "") {
     alert("boop name red");
   } else {
-    foodObj.name = foodNameDisplay.value;
+    foodObject.name = foodNameDisplay.value;
   }
 
   if (foodExpiryDisplay.value == "") {
     alert("boop expiry red");
   } else {
-    foodObj.expiry = foodExpiryDisplay.value;
+    foodObject.expiry = foodExpiryDisplay.value;
   }
 
   if (foodQuantityDisplay.value == "") {
     alert("boop quantity red");
   } else {
-    foodObj.quantity = foodQuantityDisplay.value;
+    foodObject.quantity = foodQuantityDisplay.value;
   }
 
   if (
@@ -80,21 +80,25 @@ submitButton.onclick = function() {
     pantryRadio.checked == false
   ) {
     alert("boop category red");
-  } else {
-    if ((freezerRadio.checked = true)) {
-      foodObj.category = freezerRadio.value;
+  }
+    if ((freezerRadio.checked == true)) {
+      foodObject.category = freezerRadio.value;
     }
-    if ((fridgeRadio.checked = true)) {
-      foodObj.category = fridgeRadio.value;
+    if ((fridgeRadio.checked == true)) {
+      // alert("category changed");
+      foodObject.category = "fridge";
+      console.log("Value of fridge radio button: "+fridgeRadio.value);
+      console.log("New val of foodObject:");
+      console.log(foodObject);
     }
-    if ((pantryRadio.checked = true)) {
-      foodObj.category = pantryRadio.value;
+    if ((pantryRadio.checked == true)) {
+      foodObject.category = pantryRadio.value;
     }
     // console.log("foodObj val:");
     // console.log(foodObj);
-  }
 
-  if (writeFoodInvenData(foodObj)) {
+
+  if (writeFoodInvenData(foodObject)) {
     scanningArea.style.display = "block";
     confirmationArea.style.display = "none";
     scanFooter.style.display = "block";
@@ -133,13 +137,13 @@ submitButtonDB.onclick = function() {
   ) {
     alert("boop category red");
   } else {
-    if ((freezerRadio.checked = true)) {
+    if ((freezerRadio.checked == true)) {
       foodObj.category = freezerRadio.value;
     }
-    if ((fridgeRadio.checked = true)) {
+    if ((fridgeRadio.checked == true)) {
       foodObj.category = fridgeRadio.value;
     }
-    if ((pantryRadio.checked = true)) {
+    if ((pantryRadio.checked == true)) {
       foodObj.category = pantryRadio.value;
     }
     // console.log("foodObj val:");

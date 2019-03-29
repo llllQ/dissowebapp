@@ -70,15 +70,15 @@ function writeFoodDbData(foodObj, foodid){
 /**
  * @param  {} foodObj
  */
-function writeFoodInvenData(foodObj){
+function writeFoodInvenData(foodObject){
   console.log("Write request to Personal Inventory for food item:");
-  console.log(foodObj);
+  console.log(foodObject);
   var userId = firebase.auth().currentUser.uid;
   var childId = new Date().getTime();
-  firebase.database().ref('inventories/' + userId + '/' + foodObj.category + '/' + childId + '/').set({
-    name: foodObj.name,
-    expiry: foodObj.expiry,
-    quantity: foodObj.quantity
+  firebase.database().ref('inventories/' + userId + '/' + foodObject.category + '/' + childId + '/').set({
+    name: foodObject.name,
+    expiry: foodObject.expiry,
+    quantity: foodObject.quantity
   }, function(error) {
     console.log(error);
     if (error) {
