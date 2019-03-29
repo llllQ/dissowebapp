@@ -291,7 +291,7 @@ buttonGo.onclick = function() {
 
 // scan barcode
 function scanBarcode() {
-  barcode_result.textContent = "";
+  barcodeVal = "";
 
   if (ZXing == null) {
     buttonGo.disabled = false;
