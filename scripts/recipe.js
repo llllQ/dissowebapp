@@ -11,7 +11,7 @@
   console.log(parameters);
 
   const url =
-    "http://api.yummly.com/v1/api/recipes?_app_id=" +
+    "https://api.yummly.com/v1/api/recipes?_app_id=" +
     app_id +
     "&_app_key= " +
     app_key +
