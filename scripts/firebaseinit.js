@@ -44,12 +44,14 @@ function readFoodDbData(foodid){
   return data;
 }
 
+
+
 function writeFoodDbData(foodObj, foodid){
   console.log('Write Request to Food DB for Food Item: ');
   console.log(foodObj);
   console.log(foodid);
   firebase.database().ref('fooddb/' + foodid + '/').set({
-    name: foodObj.name,
+    name: foodObj.name.toUpperCase(),
     expiry: foodObj.expiry,
     quantity: foodObj.quantity,
     category: foodObj.category
@@ -66,7 +68,6 @@ function writeFoodDbData(foodObj, foodid){
   });
   return true;
 }
-
 /**
  * @param  {} foodObj
  */
@@ -76,7 +77,7 @@ function writeFoodInvenData(foodObject){
   var userId = firebase.auth().currentUser.uid;
   var childId = new Date().getTime();
   firebase.database().ref('inventories/' + userId + '/' + foodObject.category + '/' + childId + '/').set({
-    name: foodObject.name,
+    name: foodObject.name.toUpperCase(),
     expiry: foodObject.expiry,
     quantity: foodObject.quantity
   }, function(error) {

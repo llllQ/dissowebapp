@@ -85,11 +85,7 @@ submitButton.onclick = function() {
       foodObject.category = freezerRadio.value;
     }
     if ((fridgeRadio.checked == true)) {
-      // alert("category changed");
       foodObject.category = "fridge";
-      console.log("Value of fridge radio button: "+fridgeRadio.value);
-      console.log("New val of foodObject:");
-      console.log(foodObject);
     }
     if ((pantryRadio.checked == true)) {
       foodObject.category = pantryRadio.value;

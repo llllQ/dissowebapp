@@ -13,7 +13,11 @@
     />
     <!-- <script src="../scripts/app.js"></script> -->
     <title>FoodSmarter</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../resources/logo.png">
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../resources/logo.png"
+    />
   </head>
   <body>
     <div class="contentWrapper">
@@ -51,28 +55,103 @@
     </div>
 
     <section id="main">
-      <!--  onclick="appfunctions.minimiseHamburger()" -->
-      <!-- <h1>Pantry Food Inventory</h1> -->
+      <div id="invenList">
+        <ul id="foodList">
+          <li class="foodItem">
+            <img
+              class="foodIcon"
+              onclick="appfunctions.itemSelected()"
+              src="../resources/placeholder.jpg"
+            />
+            <p class="foodName">Placeholder Name</p>
+            <p class="foodExp">Placeholder Expiry</p>
+            <p class="foodQuantity">Placeholder Quantity</p>
+          </li>
+        </ul>
+      </div>
+      <div class="foodInfo" id="foodInfo">
+        <h1>Edit Food Item</h1>
+        <img class="foodIcon" src="../resources/placeholder.jpg" />
 
-      <ul id="foodList">
-        <li class="foodItem">
-          <img class="foodIcon" src="../resources/placeholder.jpg" />
-          <p class="foodName">¯\_(ツ)_/¯</p>
-          <p class="foodExp">¯\_(ツ)_/¯</p>
-          <p class="foodQuantity">¯\_(ツ)_/¯</p>
-        </li>
-      </ul>
+        <h3>Item Name</h3>
+        <input
+          id="foodName"
+          class="foodName"
+          type="text"
+          placeholder="Food Name"
+        />
+
+        <h3>Expiration Date</h3>
+        <input
+          id="foodExpiry"
+          class="foodExp"
+          type="text"
+          placeholder="Food Expiry Date"
+        />
+
+        <h3>Quantity</h3>
+        <input
+          id="foodQuantity"
+          class="foodQuantity"
+          type="text"
+          placeholder="Food Quantity"
+        />
+
+        <h3>Category</h3>
+        <div class="radioContainer">
+          <label for="pantryRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="pantry"
+              id="pantryRadio"
+            />
+            <span class="pantrySpan">Pantry</span>
+          </label>
+
+          <label for="fridgeRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="fridge"
+              id="fridgeRadio"
+            />
+            <span class="fridgeSpan">Fridge</span>
+          </label>
+
+          <label for="freezerRadio">
+            <input
+              class="foodCategory"
+              type="radio"
+              name="category"
+              value="freezer"
+              id="freezerRadio"
+            />
+            <span class="freezerSpan">Freezer</span>
+          </label>
+        </div>
+        <button id="btnSubmit" onclick="appfunctions.writeEdit()">Confirm Changes</button>
+        <input type="radio" id="foodIdStore"/>
+      </div>
     </section>
 
     <div class="contentWrapper">
       <section id="footer">
         <nav>
           <ul id="btmNav">
-            <li id="option1"><a href="#"><i class="fas fa-minus"></i></a></li>
+            <li id="option1">
+              <a href="#"><i class="fas fa-minus"></i></a>
+            </li>
 
-            <li id="option2"><a href="#"><i class="fas fa-book"></i></a></li>
+            <li id="option2">
+              <a href="recipe.html"><i class="fas fa-book"></i></a>
+            </li>
 
-            <li id="option3"><a href="addFood.html"><i class="fas fa-plus"></i></a></li>
+            <li id="option3">
+              <a href="addFood.html"><i class="fas fa-plus"></i></a>
+            </li>
             <!-- <i class="fas fa-plus"></i> -->
             <p id="label1">Remove Item</p>
             <p id="label2">Generate Recipe</p>
@@ -81,11 +160,10 @@
         </nav>
       </section>
     </div>
-    
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="../scripts/firebaseinit.js"></script>
-    
+
     <script src="../scripts/app.js"></script>
     <script src="../scripts/checkLoginScript.js"></script>
   </body>

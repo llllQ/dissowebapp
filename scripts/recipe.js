@@ -1,0 +1,139 @@
+ function yummlyRequest(ingredients) {
+  var output = document.getElementById("temp");
+  const Http = new XMLHttpRequest();
+  const app_id = "b96a5430";
+  const app_key = "6aeb2b034eac35f97d91d9683bb6f550";
+  var parameters = "&requiredPictures=true&allowedCourse[]=course^course-Main%20Dishes"
+  ingredients.forEach(element =>{
+    element = encodeURIComponent(element.trim());
+    parameters +="&allowedIngredient[]="+element.toLowerCase();
+  });
+  console.log(parameters);
+
+  const url =
+    "http://api.yummly.com/v1/api/recipes?_app_id=" +
+    app_id +
+    "&_app_key= " +
+    app_key +
+    parameters;
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      const data = JSON.parse(Http.responseText);
+      console.log(data);
+      data.matches.forEach(element => {
+        // if (element.recipeName.length > 23){
+        //     element.recipeName = (element.recipeName.substr(0, 20) + "...")
+        // }
+        // <a href='https://www.yummly.co.uk/recipe/" +
+        //   element.id +
+        //   "' target='_blank'></a>
+        output.innerHTML +=
+          "<a href='https://www.yummly.co.uk/recipe/" +
+          element.id +
+          "' target='_blank'><li><img class='recipeIcon' src='" +
+          element.smallImageUrls[0] +
+          "'><p class='recipeName'>" +
+          element.recipeName +
+          "</p> <p class='recipeTime'>" +
+          element.totalTimeInSeconds / 60 +
+          " minutes</p> <p class='recipeSrc'>" +
+          element.sourceDisplayName +
+          "</p></li></a>";
+      });
+      output.innerHTML +=
+        "<button onclick='showSearchContainer()'>Back to Search</button>";
+    }
+  };
+  document.getElementById("searchContainer").style.display = "none";
+};
+
+function showSearchContainer() {
+  document.getElementById("temp").innerHTML = "";
+  document.getElementById("searchContainer").style.display = "block";
+}
+
+document.getElementById("addBtn").onclick = function() {
+  var inputDiv = document.getElementById("textInputs");
+  inputDiv.innerHTML +=
+    "<input type='text' placeholder='Ingredient'><i class='fas fa-search'></i>";
+};
+
+function queryInventory(foodname) {
+  const userId = firebase.auth().currentUser.uid;
+  const db = firebase.database();
+  const baseref = db.ref("inventories/" + userId + "/");
+  foodname = foodname.toUpperCase();
+  console.log("Searched food item is: " + foodname);
+  var result = "";
+  console.log(userId);
+  var searchArea = "fridge";
+  const freezerRadio = document.getElementById("freezerRadio");
+  const fridgeRadio = document.getElementById("fridgeRadio");
+  const pantryRadio = document.getElementById("pantryRadio");
+
+  if(fridgeRadio.checked){
+    searchArea = 'fridge';
+  }
+  if (freezerRadio.checked){
+    searchArea = 'freezer';
+  }
+  if (pantryRadio.checked){
+    searchArea = "pantry";
+  }
+
+  const fridgeref = baseref
+    .child(searchArea)  
+    .orderByChild("name")
+    .equalTo(foodname)
+    .limitToFirst(1);
+  fridgeref.on("value", function(snapshot) {
+    snapshot.forEach(element => {
+      // result.push(element.val().name);
+      result = element.val().name;
+    });
+    
+    createCheckBox(result);
+  });
+}
+
+document.getElementById("itagSearch").onclick = function() {
+  const searchparam = document.getElementById("searchBox").value;
+  queryInventory(searchparam);
+
+};
+
+function createCheckBox(value) {
+  console.log(value);
+  if (value){
+    document.getElementById("checkboxHolder").innerHTML +=
+    "<input type='checkbox' name='" +
+    value +
+    "' checked><span>" +
+    value +
+    "</span><br>";
+  }
+}
+
+
+document.getElementById('search').onclick = function(){
+  const test =  document.getElementById("checkboxHolder").children;
+  // test.forEach(element => {
+  //   if (element == input){
+  //     console.log(element);
+  //   }
+  // })
+  var checks = [];
+  var ingredients = [];
+  for(var i = 0; i< test.length; i+=3){
+    checks.push(test[i]);
+  }
+  checks.forEach(element => {
+    if (element.checked){
+      ingredients.push(element.name);
+    }
+  });
+  yummlyRequest(ingredients);
+}

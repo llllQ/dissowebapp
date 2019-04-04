@@ -171,142 +171,14 @@ header {
 /* END OF NAVBAR HAMBURGER STYLING */
 
 /* Main  *************************************************************************** */
-
-#main {
-    padding-top: 1.2%;
-    /* display: block; */
-    /* display: flex; */
-    /* background: linear-gradient(23deg, #a80189 0%, #f9003a 100%); */
-    /* height: 200vh; */
-    justify-content: center;
-    /* align-items: center  ; */
-
-    /* top: 10%; */
-}
-
-
 #main ul{
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-
-#main .foodItem {
-    /* height: 11em; */
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 5%;
-    padding-bottom: 2%;
-    border-bottom: 1px solid #bdbdbd;
-    display: grid;
-    grid-template:
-        "img ws name"
-        "img ws expiry"
-        "img ws quantity";
-        grid-template-columns: 1.5fr 1fr 4fr;
-}
-
-#main .foodItem img{
-    border-radius: 100%;
-    border: 2px solid var(--brand-clr);
-    width:100%;
-    height:100%;
-    /* display: grid; */
-    grid-area: img;
-    /* height: */
-}
-
-#main .foodItem p{
-    border-bottom: 1px solid var(--brand-clr);
-    font-size: 2em;
-    margin: 0;
-    margin-bottom: 3%;
-}
-
-#main .foodItem .foodName{
-    text-transform: lowercase;
-    /* text-transform: capitalize; */
-    grid-area: name;
-}
-
-#main .foodItem .foodName::first-letter{
-    text-transform: capitalize;
-}
-
-#main .foodItem .foodExp{
-    grid-area: expiry;
-}
-
-#main .foodItem .foodQuantity{
-    grid-area: quantity;
-}
-
-#main .foodInfo{
-    display: none;
-    padding-left: 15%;
-    padding-right: 15%;
-}
-
-#main .foodInfo h1{
-    text-align: center;
-    font-size: 4em;
-}
-#main .foodInfo h3{
-    font-size: 2.4em;
-}
-
-#main .foodInfo img{
-    position: relative;
-    border-radius: 100%;
-    width: 25%;
-    height: 25%;
-    left: calc(50% - 12.5%);
-}
-
-#main .foodInfo input{
-    display: block;
-    border: none;
-    border-bottom: 3px solid var(--brand-clr);
-    background: rgba(255,255,255,0);
-    padding: 5%;
-    margin-bottom: 5%;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-    color: var(--brand-clr);
-    font-size: 2.4rem;
-}
-
-#main .foodInfo .radioContainer{
-    width: 68%;
-    position: relative;
-    left: calc(50% - 34%);
-}
-
-#main .foodInfo label {
-    display: inline-block;
-}
-
-#main .foodInfo label .foodCategory {
-    display: none;
-}
-
-#main .foodInfo label span{
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #55D6BE;
-    color: white;
-    font-size: 2.4rem;
-    padding: 10px;
 
 }
-#main .foodInfo label input:checked ~span{
-    background-color: var(--brand-clr);
-}
 
-#main .foodInfo #btnSubmit {
+#main #temp button{
     cursor: pointer;
     color: #fff;
     background: var(--brand-clr);
@@ -323,65 +195,163 @@ header {
     box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15);
     font-size: 2.4rem;
     margin-bottom: 7%;
-    /* text-transform: uppercase; */
+    text-transform: uppercase;
     margin-top: 4%;
 }
 
-#main .foodInfo #foodIdStore{
+#main #temp li{
+    /* font-size: 2.5em; */
+    text-decoration: none;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+    padding-bottom: 2%;
+    border-bottom: 1px solid #bdbdbd;
+    display: grid;
+    grid-template:
+        "img ws name"
+        "img ws time"
+        "img ws source";
+        grid-template-columns: 1.5fr 1fr 4fr;
+}
+
+#main #temp li .recipeIcon{
+    border-radius: 100%;
+    border: 2px solid var(--brand-clr);
+    width:100%;
+    height: 154px;
+    /* height: 154px; */
+    grid-area: img;
+    /* height: */
+}
+
+#main #temp a {
+    text-decoration: none;
+    color: black;
+}
+#main #temp li p{
+    text-decoration: none;
+    border-bottom: 1px solid var(--brand-clr);
+    font-size: 2em;
+    margin: 0;
+    margin-bottom: 3%;
+}
+
+#main #temp .recipeName{
+    grid-area: name;
+}
+
+#main #temp .recipeTime{
+    grid-area: time;
+}
+
+#main #temp .recipeSrc{
+    grid-area: source;
+}
+
+#main #manualSearch{
+    position: relative;
+    width: 70%;
+    left: calc(50% - 35%);
+}
+
+#main #manualSearch input{
+        display: inline-block;
+        border: none;
+        border-bottom: 3px solid var(--brand-clr);
+        background: rgba(255,255,255,0);
+        padding: 5%;
+        margin-bottom: 5%;
+        outline: none;
+        width: 90%;
+        box-sizing: border-box;
+        color: var(--brand-clr);
+        font-size: 2.4rem;
+}
+
+#main #manualSearch i{
+    display: inline-block;
+    font-size: 2em;
+    color: var(--brand-clr);
+    text-decoration: none;
+    width: 10%;
+}
+
+#main #manualSearch #addBtn {
+    cursor: pointer;
+    color: #bdbdbd;
+    background: #fff;
+    /* border: 1px solid var(--brand-clr); */
+    border: none;
+    border-radius: 5px;
+    padding: 2%;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    /* box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15); */
+    font-size: 2.4rem;
+    margin-bottom: 7%;
+    text-transform: uppercase;
+    margin-top: 4%;
+}
+
+#main .actionButton {
+    cursor: pointer;
+    color: #fff;
+    background: var(--brand-clr);
+    /* border: 1px solid var(--brand-clr); */
+    border: none;
+    border-radius: 5px;
+    padding: 2%;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    box-shadow: 0px 1px 0.5px 0.5px rgba(53, 53, 53, 0.15);
+    font-size: 2.4rem;
+    margin-bottom: 7%;
+    text-transform: uppercase;
+    margin-top: 4%;
+}
+
+
+#main #searchContainer .radioContainer{
+    padding-top: 5%;
+    width: 68%;
+    position: relative;
+    left: calc(50% - 34%);
+}
+
+#main #searchContainer label {
+    display: inline-block;
+}
+
+#main #searchContainer label .foodCategory {
     display: none;
 }
 
-/* End of MAIN Styling ******************************************************************** */
-
-/* Bottom NAVBAR STYLING*/
-
-#footer{
-    /* color: #000; */
-    border-top-width: 1%;
-    border-top-color: #bdbdbd;
-    border-top-style: solid;
-    background-color:#fff;
-    color: #bdbdbd;
-    position: fixed;
-    z-index: 998;
-    width: 100%;
-    bottom: 0;
-    padding-top: 1%;
-    padding-left: 10%;
-    padding-right: 10%;
-   
-    text-align: center
+#main #searchContainer label span{
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #55D6BE;
+    color: white;
+    font-size: 2.4rem;
+    padding: 10px;
 
 }
-
-
-#footer a{
-    opacity: 1;
-    color: #bdbdbd;
-    font-size: 1em;
-}
-
-#footer #btmNav{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-#footer li{
-    font-size: 4em;
-    margin:0;
-    margin-left: 20%;
-    margin-right: 20%;
+#main #searchContainer label input:checked ~span{
+    background-color: var(--brand-clr);
 }
 
 
 
-#footer p{
-    margin-top: 0;
-    font-size: 1.4rem;
-}
-
-
-/* End of bottom navbar styling */
+/* End of Main Styling*/
 
 /* Desktop View Styling */
 @media screen and (min-width: 1000px){
