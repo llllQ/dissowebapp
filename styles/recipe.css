@@ -171,6 +171,10 @@ header {
 /* END OF NAVBAR HAMBURGER STYLING */
 
 /* Main  *************************************************************************** */
+#main{
+    box-sizing: border-box;
+}
+
 #main ul{
     margin: 0;
     padding: 0;
@@ -256,7 +260,10 @@ header {
     left: calc(50% - 35%);
 }
 
-#main #manualSearch input{
+
+
+
+#main #manualSearch #searchBox{
         display: inline-block;
         border: none;
         border-bottom: 3px solid var(--brand-clr);
@@ -349,6 +356,32 @@ header {
     background-color: var(--brand-clr);
 }
 
+#main #search{
+    display: none;
+}
+
+
+
+/* Customize the checkbox*/
+
+#checkboxHolder {
+border: 1px green;
+}
+
+#checkboxHolder .checkContainer .tickbox{
+    /* position: relative; */
+    min-width: 40px;
+    min-height: 40px;
+    /* float: left; */
+   display: inline-block;
+   width: 30%;
+    
+}
+
+#checkboxHolder .checkContainer{
+    font-size: 2em;
+    width: 70%;
+}
 
 
 /* End of Main Styling*/

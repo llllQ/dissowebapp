@@ -1,12 +1,13 @@
- function yummlyRequest(ingredients) {
+function yummlyRequest(ingredients) {
   var output = document.getElementById("temp");
   const Http = new XMLHttpRequest();
   const app_id = "b96a5430";
   const app_key = "6aeb2b034eac35f97d91d9683bb6f550";
-  var parameters = "&requiredPictures=true&allowedCourse[]=course^course-Main%20Dishes"
-  ingredients.forEach(element =>{
+  var parameters =
+    "&requiredPictures=true&allowedCourse[]=course^course-Main%20Dishes";
+  ingredients.forEach(element => {
     element = encodeURIComponent(element.trim());
-    parameters +="&allowedIngredient[]="+element.toLowerCase();
+    parameters += "&allowedIngredient[]=" + element.toLowerCase();
   });
   console.log(parameters);
 
@@ -48,18 +49,12 @@
     }
   };
   document.getElementById("searchContainer").style.display = "none";
-};
+}
 
 function showSearchContainer() {
   document.getElementById("temp").innerHTML = "";
   document.getElementById("searchContainer").style.display = "block";
 }
-
-document.getElementById("addBtn").onclick = function() {
-  var inputDiv = document.getElementById("textInputs");
-  inputDiv.innerHTML +=
-    "<input type='text' placeholder='Ingredient'><i class='fas fa-search'></i>";
-};
 
 function queryInventory(foodname) {
   const userId = firebase.auth().currentUser.uid;
@@ -74,18 +69,18 @@ function queryInventory(foodname) {
   const fridgeRadio = document.getElementById("fridgeRadio");
   const pantryRadio = document.getElementById("pantryRadio");
 
-  if(fridgeRadio.checked){
-    searchArea = 'fridge';
+  if (fridgeRadio.checked) {
+    searchArea = "fridge";
   }
-  if (freezerRadio.checked){
-    searchArea = 'freezer';
+  if (freezerRadio.checked) {
+    searchArea = "freezer";
   }
-  if (pantryRadio.checked){
+  if (pantryRadio.checked) {
     searchArea = "pantry";
   }
 
   const fridgeref = baseref
-    .child(searchArea)  
+    .child(searchArea)
     .orderByChild("name")
     .equalTo(foodname)
     .limitToFirst(1);
@@ -94,46 +89,43 @@ function queryInventory(foodname) {
       // result.push(element.val().name);
       result = element.val().name;
     });
-    
+
     createCheckBox(result);
   });
 }
 
 document.getElementById("itagSearch").onclick = function() {
+  document.getElementById('search').style.display = "block";
   const searchparam = document.getElementById("searchBox").value;
+  document.getElementById("searchBox").value = "";
   queryInventory(searchparam);
-
 };
 
 function createCheckBox(value) {
   console.log(value);
-  if (value){
+  if (value) {
     document.getElementById("checkboxHolder").innerHTML +=
-    "<input type='checkbox' name='" +
-    value +
-    "' checked><span>" +
-    value +
-    "</span><br>";
+      "<label class='checkContainer' for='" +
+      value +
+      "' ><input type='checkbox' class='tickbox'  id='" +
+      value +
+      "' checked>" +
+      value +
+      "</label>";
   }
 }
 
-
-document.getElementById('search').onclick = function(){
-  const test =  document.getElementById("checkboxHolder").children;
-  // test.forEach(element => {
-  //   if (element == input){
-  //     console.log(element);
-  //   }
-  // })
+document.getElementById("search").onclick = function() {
+  var test = document.getElementById("checkboxHolder").children;
   var checks = [];
   var ingredients = [];
-  for(var i = 0; i< test.length; i+=3){
+  for (var i = 0; i < test.length; i++) {
     checks.push(test[i]);
   }
   checks.forEach(element => {
-    if (element.checked){
-      ingredients.push(element.name);
+    if (element.children[0].checked) {
+      ingredients.push(element.children[0].id);
     }
   });
   yummlyRequest(ingredients);
-}
+};
