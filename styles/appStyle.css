@@ -3,7 +3,7 @@
 :root{
     --brand-clr: rgb(47, 228, 44);
     --select-clr: #55D6BE;
-    --err-clr: #cc0606;
+    --err-clr: #D7263D;
 }
 
 *, 
@@ -208,6 +208,8 @@ header {
         grid-template-columns: 1.5fr 1fr 4fr;
 }
 
+
+
 #main .foodItem img{
     border-radius: 100%;
     border: 2px solid var(--brand-clr);
@@ -218,11 +220,19 @@ header {
     /* height: */
 }
 
+#main .expired img{
+    border: var(--err-clr);
+}
+
 #main .foodItem p{
     border-bottom: 1px solid var(--brand-clr);
     font-size: 2em;
     margin: 0;
     margin-bottom: 3%;
+}
+
+#main .expired p{
+    border-bottom: 1px solid var(--err-clr)
 }
 
 #main .foodItem .foodName{

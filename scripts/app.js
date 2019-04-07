@@ -119,13 +119,25 @@ const appfunctions = {
 
         var list = document.getElementById("foodList");
         list.innerHTML = "";
-        console.log("foodArray val:");
-        console.log(foodArray);
+       
         foodArray.forEach(function(element) {
+          var foodClass = "foodItem";
+          //check element's expiry date
+          const today = new Date();
+          var dateFormatted = (element.value.expiry.split("/")).map(Number);
+          dateFormatted = new Date(dateFormatted[2], (dateFormatted[1]-1), dateFormatted[0]);
+          if (Date.dateDiff(today, dateFormatted) < 2){
+            console.log("Date difference: " +Date.dateDiff(dateFormatted, today));
+            console.log("today date: "+today);
+            console.log("expiry date: "+dateFormatted);
+            foodClass += " expired";
+          }
+
+
           // console.log("element value: ");
           // console.log(element);
           list.innerHTML +=
-            "<li class='foodItem' id='" +
+            "<li class='"+foodClass+"' id='" +
             element.key +
             "'><img class='foodIcon' onclick=appfunctions.editFoodItem(" +
             element.key +

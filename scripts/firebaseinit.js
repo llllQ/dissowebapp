@@ -12,6 +12,13 @@ var database = firebase.database();
 
 var foodDBRef = firebase.database().ref('fooddb/');
 
+Date.dateDiff = function(fromdate, todate) {	
+  var diff = todate - fromdate;	
+  var divideBy = 86400000
+  
+  return Math.floor( diff/divideBy);
+}
+
 /**
  * This function is called when a new user is registered. It creates an entry for them in the user and inventory tables in the firebase database.
  * @param  {String} userId current user's id String used to create a flat hierarchy noSQL database entry in firebase
@@ -39,6 +46,17 @@ function readFoodDbData(foodid){
   var data;
   foodDBRef.on('value', function(snapshot){
     data = snapshot.child(foodid).val();
+    const ext = data.expiry;
+    console.log("*******");
+    console.log(data);
+    console.log("*******");
+    var tempDate = new Date();
+    console.log(tempDate);
+    tempDate.setDate(tempDate.getDate() + ext);
+    console.log('&&&&&&');
+    console.log(tempDate);
+    console.log('&&&&&&');  
+    data.expiry = tempDate.getDate()+"/"+(tempDate.getMonth()+1)+"/"+(tempDate.getYear()+1900);
   });
   console.log("value of returnable in readFooddbData function: "+data);
   return data;
@@ -50,9 +68,16 @@ function writeFoodDbData(foodObj, foodid){
   console.log('Write Request to Food DB for Food Item: ');
   console.log(foodObj);
   console.log(foodid);
+  var daysToExpiry;
+  var dateFormatted
+  const today = new Date();
+  dateFormatted = (foodObj.expiry.split("/")).map(Number);
+  dateFormatted = new Date(dateFormatted[2], (dateFormatted[1]-1), dateFormatted[0]);
+  daysToExpiry = Date.dateDiff(today, dateFormatted);
+ 
   firebase.database().ref('fooddb/' + foodid + '/').set({
     name: foodObj.name.toUpperCase(),
-    expiry: foodObj.expiry,
+    expiry: daysToExpiry,
     quantity: foodObj.quantity,
     category: foodObj.category
   }, function(error) {
