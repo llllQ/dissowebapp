@@ -89,7 +89,20 @@ function queryInventory(foodname) {
       // result.push(element.val().name);
       result = element.val().name;
     });
-
+    if (result == ""){
+      const newRef = baseref.child(searchArea).orderByChild('name').startAt(foodname).limitToFirst(1);
+      newRef.on("value", function(snapshot){
+        snapshot.forEach(element => {
+          console.log('here');
+          result = element.val().name;
+          console.log("99");
+          console.log(result);
+          console.log("99");
+          createCheckBox(result);
+          return;
+        });
+      });
+    }
     createCheckBox(result);
   });
 }
