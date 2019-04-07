@@ -104,6 +104,27 @@ const appfunctions = {
    * @returns {} no returnable, DOM manipulation used to display database read request
    */
   populateList(foodType) {
+    var pantrySwitch = document.getElementById('pantrySwitch');
+    var fridgeSwitch = document.getElementById('fridgeSwitch');
+    var freezerSwitch = document.getElementById('freezerSwitch');
+    switch (foodType){
+      
+      case 'fridge':
+        fridgeSwitch.classList.add('current');
+        pantrySwitch.classList.remove('current');
+        freezerSwitch.classList.remove('current');
+        break;
+      case 'freezer':
+      fridgeSwitch.classList.remove('current');
+        pantrySwitch.classList.remove('current');
+        freezerSwitch.classList.add('current');
+      break;
+      case 'pantry':
+      fridgeSwitch.classList.remove('current');
+        pantrySwitch.classList.add('current');
+        freezerSwitch.classList.remove('current');
+      break;
+    }
     appfunctions.changeTitle(foodType);
     document.getElementById("nav-toggle").checked = false;
     var userId = firebase.auth().currentUser.uid;
@@ -220,5 +241,5 @@ const appfunctions = {
       // console.log(element);
     });
   }
-};
+}
 module.exports = appfunctions;

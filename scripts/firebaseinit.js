@@ -57,6 +57,7 @@ function readFoodDbData(foodid){
     console.log(tempDate);
     console.log('&&&&&&');  
     data.expiry = tempDate.getDate()+"/"+(tempDate.getMonth()+1)+"/"+(tempDate.getYear()+1900);
+    return data;
   });
   console.log("value of returnable in readFooddbData function: "+data);
   return data;

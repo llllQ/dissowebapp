@@ -182,7 +182,13 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
   barcodeVal = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
   if (barcodeVal != "") {
-    var foodObj = readFoodDbData(barcodeVal);
+    console.log("186");
+    console.log(barcodeVal);
+    console.log("186");
+    const foodObj = readFoodDbData(barcodeVal);
+    console.log("190");
+    console.log(foodObj);
+    console.log("190");
     if (foodObj != null) {
       scanningArea.style.display = "none";
       confirmationArea.style.display = "block";
@@ -291,7 +297,6 @@ backtoScan.onclick = function() {
 // add button event
 buttonGo.onclick = function() {
   resetScanEnv();
-  barcodeVal = "";
   if (isPC) {
     canvas.style.display = "none";
   } else {
