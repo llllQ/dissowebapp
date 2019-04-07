@@ -281,6 +281,7 @@ function dataURItoBlob(dataURI) {
 }
 
 backtoScan.onclick = function() {
+  resetScanEnv();
   scanningArea.style.display = "block";
   confirmationArea.style.display = "none";
   scanFooter.style.display = "block";
@@ -289,6 +290,7 @@ backtoScan.onclick = function() {
 
 // add button event
 buttonGo.onclick = function() {
+  resetScanEnv();
   barcodeVal = "";
   if (isPC) {
     canvas.style.display = "none";
