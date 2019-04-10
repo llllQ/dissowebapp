@@ -33,6 +33,10 @@ var isPC = true;
 var ZXing = null;
 var decodePtr = null;
 
+/**
+ *This function resets all input box/radio values to be empty ready for when they are next displayed
+ *
+ */
 resetScanEnv = function() {
   barcodeVal = "";
   foodNameDisplay.value = "";
@@ -43,6 +47,10 @@ resetScanEnv = function() {
   pantryRadio.checked = false;
 };
 
+/**
+ * This function is called when the 'manualAdd' button is pressed.
+ *    It switches the user view from the barcode scanner to a set of input boxes/radios where food data can be manually entered and submitted
+ */
 buttonManual.onclick = function() {
   scanningArea.style.display = "none";
   confirmationArea.style.display = "block";
@@ -53,6 +61,11 @@ buttonManual.onclick = function() {
   resetScanEnv();
 };
 
+/**
+ * This function is called when the 'btnSubmit' is pressed.
+ *    Constructs the food item object by assigning values from each of the input boxes (Name, Expiry, Quantity and Inventory-Category).
+ *    Then initiates writeFoodInvenData
+ */
 submitButton.onclick = function() {
   //Food Object creation which will later be written to user's food database
   var foodObject = {};
@@ -90,10 +103,6 @@ submitButton.onclick = function() {
     if ((pantryRadio.checked == true)) {
       foodObject.category = pantryRadio.value;
     }
-    // console.log("foodObj val:");
-    // console.log(foodObj);
-
-
   if (writeFoodInvenData(foodObject)) {
     scanningArea.style.display = "block";
     confirmationArea.style.display = "none";
@@ -106,6 +115,10 @@ submitButton.onclick = function() {
   }
 };
 
+/**
+ *This function is called the 'submitbtndb' is clicked, and it writes the newly created food object to the community food database before writing it to the current user's food inventory
+ *
+ */
 submitButtonDB.onclick = function() {
   var foodObj = {};
   if (foodNameDisplay.value == "") {
@@ -165,6 +178,10 @@ submitButtonDB.onclick = function() {
   }
 };
 
+/**
+ *The tick function is called recursively to check the video-output canvas until a barcode value has been decoded, or an error occurs
+ *
+ */
 var tick = function() {
   if (window.ZXing) {
     ZXing = ZXing();
@@ -175,10 +192,17 @@ var tick = function() {
 };
 tick();
 
+/**
+ *
+ *
+ * @param {*} ptr
+ * @param {*} len
+ * @param {*} resultIndex
+ * @param {*} resultCount
+ */
 var decodeCallback = function(ptr, len, resultIndex, resultCount) {
   var result = new Uint8Array(ZXing.HEAPU8.buffer, ptr, len);
   console.log(String.fromCharCode.apply(null, result));
-  // barcode_result.textContent = String.fromCharCode.apply(null, result);
   barcodeVal = String.fromCharCode.apply(null, result);
   buttonGo.disabled = false;
   if (barcodeVal != "") {
@@ -226,7 +250,12 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
   }
 };
 
-// check devices
+// 
+/**
+ * This function checks the type of device running this script
+ *
+ * @returns either 'phone' or 'pc'
+ */
 function browserRedirect() {
   var deviceType;
   var sUserAgent = navigator.userAgent.toLowerCase();
@@ -411,11 +440,21 @@ function getStream() {
     .catch(handleError);
 }
 
+/**
+ * Sets the video html element to be equal to the camera stream
+ *
+ * @param {*} stream
+ */
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
   videoElement.srcObject = stream;
 }
 
+/**
+ *This function outputs any errors that occur to console
+ *
+ * @param {*} error Error message to be outputted to console
+ */
 function handleError(error) {
   console.log("Error: ", error);
 }

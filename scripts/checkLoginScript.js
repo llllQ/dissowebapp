@@ -4,22 +4,26 @@
  * If user is logged out, redirect to the index login/register html page
  * @param  {} user firebase user reference object
  */
-firebase.auth().onAuthStateChanged(function(user){
-    if (user) {
-        var user1 = firebase.auth().currentUser;
-        console.log(user1);
-        if (user1.displayName != null){
-            document.getElementById("profileName").innerHTML = "Hi! " + user1.displayName;
-        } else{
-            document.getElementById("profileName").innerHTML = "Hi! " + user1.email;
-        } 
-        appfunctions.populateList('fridge');
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var user1 = firebase.auth().currentUser;
+    console.log(user1);
+    if (user1.displayName != null) {
+      document.getElementById("profileName").innerHTML =
+        "Hi! " + user1.displayName;
     } else {
-        console.log("not signed in");
-        window.location = "../index.html";
+      document.getElementById("profileName").innerHTML = "Hi! " + user1.email;
     }
-  });
+    appfunctions.populateList("fridge");
+  } else {
+    console.log("not signed in");
+    window.location = "../index.html";
+  }
+});
 
-  function logout(){
-    firebase.auth().signOut();
+/**
+ *This function changes the current user's authentication state to be signed out. This then invokes the onAuthStateChanged() firebase function
+ */
+function logout() {
+  firebase.auth().signOut();
 }

@@ -1,4 +1,11 @@
 const appfunctions = {
+  /**
+   * This function is called when a user selects a food item from their inventory that they wish to edit details of. This is intiated when a user clicks on the food item's icon.
+   *  The purpose of this function is to bring up a 'edit' html page, loaded with the info stored about the food item being edited
+   * @param  {} foodKey expects the unique id used as a key to store the food item in the user's food inventory. Used in this function to complete the db reference to load the food item being edited
+   * @param  {} foodType expects the category of the food (fridge/freezer/pantry) used to complete the db reference to load the food item being edited
+   * @param  {} userId epects the id value of the currently signed in user used to complete the db reference to load the food item being edited.
+   */
   editFoodItem(foodKey, foodType, userId) {
     var inventory = document.getElementById("invenList");
     var editScreen = document.getElementById("foodInfo");
@@ -10,7 +17,6 @@ const appfunctions = {
     var pantryRadio = document.getElementById("pantryRadio");
     var foodIdStore = document.getElementById("foodIdStore");
     var foodObj = [];
-    // var foodItemRef = firebase.database().ref("/inventories/" + userId + "/" + foodType + "/");
     firebase
       .database()
       .ref("/inventories/" + userId + "/" + foodType + "/")
@@ -18,31 +24,32 @@ const appfunctions = {
         foodObj.push(snapshot.child(foodKey).val());
         console.log(foodObj);
         inventory.style.display = "none";
-    editScreen.style.display = "block";
-    console.log(foodObj[0]);
-    foodNameDisplay.value = foodObj[0].name;
-    foodExpiryDisplay.value = foodObj[0].expiry;
-    foodQuantityDisplay.value = foodObj[0].quantity;
-    console.log(foodType);
-    switch (foodType) {
-      case "fridge":
-        fridgeRadio.checked = true;
-        break;
-      case "freezer":
-        freezerRadio.checked = true;
-        break;
-      case "pantry":
-        pantryRadio.checked = true;
-        break;
-    }
-    foodIdStore.value = foodKey;
+        editScreen.style.display = "block";
+        console.log(foodObj[0]);
+        foodNameDisplay.value = foodObj[0].name;
+        foodExpiryDisplay.value = foodObj[0].expiry;
+        foodQuantityDisplay.value = foodObj[0].quantity;
+        console.log(foodType);
+        switch (foodType) {
+          case "fridge":
+            fridgeRadio.checked = true;
+            break;
+          case "freezer":
+            freezerRadio.checked = true;
+            break;
+          case "pantry":
+            pantryRadio.checked = true;
+            break;
+        }
+        foodIdStore.value = foodKey;
       });
-
-    
-    // return foodObj;
   },
 
-  writeEdit(){
+  /**
+   * This function writes any changes made when a user commits their food item edits.
+   *   It uses values in the input fields generated from editFoodItem().
+   */
+  writeEdit() {
     var inventory = document.getElementById("invenList");
     var editScreen = document.getElementById("foodInfo");
     var foodNameDisplay = document.getElementById("foodName");
@@ -58,39 +65,31 @@ const appfunctions = {
       quantity: foodQuantityDisplay.value
     };
     var foodType;
-    if ((freezerRadio.checked == true)) {
+    if (freezerRadio.checked == true) {
       foodType = freezerRadio.value;
     }
-    if ((fridgeRadio.checked == true)) {
+    if (fridgeRadio.checked == true) {
       foodType = fridgeRadio.value;
     }
-    if ((pantryRadio.checked == true)) {
+    if (pantryRadio.checked == true) {
       foodType = pantryRadio.value;
     }
     var userId = firebase.auth().currentUser.uid;
-    firebase.database().ref('inventories/' + userId + '/' + foodType + '/' + foodKey + '/').set({
-      name: foodObj.name,
-      expiry: foodObj.expiry,
-      quantity: foodObj.quantity
-    });
+    firebase
+      .database()
+      .ref("inventories/" + userId + "/" + foodType + "/" + foodKey + "/")
+      .set({
+        name: foodObj.name,
+        expiry: foodObj.expiry,
+        quantity: foodObj.quantity
+      });
     inventory.style.display = "block";
     editScreen.style.display = "none";
-
-
   },
 
   /**
-   */
-  minimiseHamburger() {
-    var toggle = document.getElementById("nav-toggle");
-    if (toggle.checked == true) {
-      toggle.checked = false;
-      document.getElementById("main").classList.remove("hidden");
-    }
-  },
-
-  /**
-   * this function changes the navbar header to represent the food inventory currently being shown in #main's foodlist
+   * this function changes the navbar header to represent the food inventory currently being shown in #main's foodlist.
+   * It is called whenever a user navigates to one of their three inventories (fridge/freezer/pantry).
    * @param  {String} foodType expects one of {"fridge","freezer","pantry"}
    */
   changeTitle(foodType) {
@@ -104,26 +103,25 @@ const appfunctions = {
    * @returns {} no returnable, DOM manipulation used to display database read request
    */
   populateList(foodType) {
-    var pantrySwitch = document.getElementById('pantrySwitch');
-    var fridgeSwitch = document.getElementById('fridgeSwitch');
-    var freezerSwitch = document.getElementById('freezerSwitch');
-    switch (foodType){
-      
-      case 'fridge':
-        fridgeSwitch.classList.add('current');
-        pantrySwitch.classList.remove('current');
-        freezerSwitch.classList.remove('current');
+    var pantrySwitch = document.getElementById("pantrySwitch");
+    var fridgeSwitch = document.getElementById("fridgeSwitch");
+    var freezerSwitch = document.getElementById("freezerSwitch");
+    switch (foodType) {
+      case "fridge":
+        fridgeSwitch.classList.add("current");
+        pantrySwitch.classList.remove("current");
+        freezerSwitch.classList.remove("current");
         break;
-      case 'freezer':
-      fridgeSwitch.classList.remove('current');
-        pantrySwitch.classList.remove('current');
-        freezerSwitch.classList.add('current');
-      break;
-      case 'pantry':
-      fridgeSwitch.classList.remove('current');
-        pantrySwitch.classList.add('current');
-        freezerSwitch.classList.remove('current');
-      break;
+      case "freezer":
+        fridgeSwitch.classList.remove("current");
+        pantrySwitch.classList.remove("current");
+        freezerSwitch.classList.add("current");
+        break;
+      case "pantry":
+        fridgeSwitch.classList.remove("current");
+        pantrySwitch.classList.add("current");
+        freezerSwitch.classList.remove("current");
+        break;
     }
     appfunctions.changeTitle(foodType);
     document.getElementById("nav-toggle").checked = false;
@@ -140,25 +138,29 @@ const appfunctions = {
 
         var list = document.getElementById("foodList");
         list.innerHTML = "";
-       
+
         foodArray.forEach(function(element) {
           var foodClass = "foodItem";
           //check element's expiry date
           const today = new Date();
-          var dateFormatted = (element.value.expiry.split("/")).map(Number);
-          dateFormatted = new Date(dateFormatted[2], (dateFormatted[1]-1), dateFormatted[0]);
-          if (Date.dateDiff(today, dateFormatted) < 2){
-            console.log("Date difference: " +Date.dateDiff(dateFormatted, today));
-            console.log("today date: "+today);
-            console.log("expiry date: "+dateFormatted);
+          var dateFormatted = element.value.expiry.split("/").map(Number);
+          dateFormatted = new Date(
+            dateFormatted[2],
+            dateFormatted[1] - 1,
+            dateFormatted[0]
+          );
+          if (Date.dateDiff(today, dateFormatted) < 2) {
+            console.log(
+              "Date difference: " + Date.dateDiff(dateFormatted, today)
+            );
+            console.log("today date: " + today);
+            console.log("expiry date: " + dateFormatted);
             foodClass += " expired";
           }
-
-
-          // console.log("element value: ");
-          // console.log(element);
           list.innerHTML +=
-            "<li class='"+foodClass+"' id='" +
+            "<li class='" +
+            foodClass +
+            "' id='" +
             element.key +
             "'><img class='foodIcon' onclick=appfunctions.editFoodItem(" +
             element.key +
@@ -180,18 +182,7 @@ const appfunctions = {
         });
       });
   },
-
-  getFoodObjArray(foodType) {
-    userId = appfunctions.getCurrentUser();
-    return firebase
-      .database()
-      .ref("/inventories/" + userId + "/" + foodType + "/")
-      .once("value")
-      .then(function(snapshot) {
-        appfunctions.updateHTML(snapshot.val(), userId, foodType);
-      });
-  },
-
+  
   getFoodObjImg(userId, foodType, filename) {
     //     var storage = firebase.storage()
     //     var pathref = storage.ref("https://firebasestorage.googleapis.com/v0/b/disso-70-100.appspot.com/o/9voizvBqsMOukDXp6kXXB5Smyeu2%2Finventories%2Ffridge%2F1.jpg?alt=media&token=5399ec9a-af29-4564-827c-e26123095965");
@@ -211,35 +202,6 @@ const appfunctions = {
 
     var test = imagesRef.getDownloadURL();
     return test;
-  },
-
-  getCurrentUser() {
-    return firebase.auth().currentUser.uid;
-  },
-
-  updateHTML(fArray, uId, foodType) {
-    console.log("user id:");
-    console.log(uId);
-    appfunctions.changeTitle(foodType);
-    document.getElementById("nav-toggle").checked = false;
-    var list = document.getElementById("foodList");
-    var test = appfunctions.getFoodObjImg(uId, foodType, "1.jpg");
-    console.log("test val:");
-    console.log(test);
-    list.innerHTML = "";
-    fArray.forEach(function(element) {
-      list.innerHTML +=
-        "<li class='foodItem'><img class='foodIcon' src='" +
-        test +
-        "'><p class='foodName'>" +
-        element.name +
-        "</p> <p class='foodExp'>" +
-        element.expiry +
-        "</p> <p class='foodQuantity'>" +
-        element.quantity +
-        "</p> </li>";
-      // console.log(element);
-    });
   }
-}
+};
 module.exports = appfunctions;

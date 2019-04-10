@@ -12,8 +12,15 @@ var database = firebase.database();
 
 var foodDBRef = firebase.database().ref('fooddb/');
 
-Date.dateDiff = function(fromdate, todate) {	
-  var diff = todate - fromdate;	
+/**
+ *
+ *This function is used to calculate the difference between the expiry date and the current date returns that result in the form of days
+ * @param {Date} fromdate usually the current date e.g. 08/04/2019
+ * @param {Date} expdate the expiry date of the food product e.g. 12/04/2019
+ * @returns int value representing number of days until expiry.e.g. 4
+ */
+Date.dateDiff = function(fromdate, expdate) {	
+  var diff = expdate - fromdate;	
   var divideBy = 86400000
   
   return Math.floor( diff/divideBy);
@@ -38,8 +45,8 @@ function writeUserData(userId, displayname, email) {
 }
 
 /**
- * This function takes a barcode id and retrieves the relevant food JSON object
- * @param  {} foodid where foodid is the number encoded in the 1-dimensional barcode that has just been scanned by the user.
+ * The readFoodDbData function takes a barcode id and retrieves the relevant food JSON object
+ * @param  {String} foodid where foodid is the String encoded in the 1-dimensional barcode that has just been scanned by the user.
  * @returns data object representing the item of food that has just had it's barcode scanned.
  */
 function readFoodDbData(foodid){
@@ -47,28 +54,24 @@ function readFoodDbData(foodid){
   foodDBRef.on('value', function(snapshot){
     data = snapshot.child(foodid).val();
     const ext = data.expiry;
-    console.log("*******");
-    console.log(data);
-    console.log("*******");
     var tempDate = new Date();
-    console.log(tempDate);
     tempDate.setDate(tempDate.getDate() + ext);
-    console.log('&&&&&&');
-    console.log(tempDate);
-    console.log('&&&&&&');  
     data.expiry = tempDate.getDate()+"/"+(tempDate.getMonth()+1)+"/"+(tempDate.getYear()+1900);
     return data;
   });
-  console.log("value of returnable in readFooddbData function: "+data);
   return data;
 }
 
 
 
+/**
+ *
+ *The writeFoodDbData function uses a barcode id as a key and writes the foodObj data to the firebase database
+ * @param {Object} foodObj is an object depicting a food item (Name, Quantity, Expiry and Inventory Category)
+ * @param {String} foodid is the String encoded in the 1-dimensional barcode that has been scanned by the user.
+ * @returns
+ */
 function writeFoodDbData(foodObj, foodid){
-  console.log('Write Request to Food DB for Food Item: ');
-  console.log(foodObj);
-  console.log(foodid);
   var daysToExpiry;
   var dateFormatted
   const today = new Date();
@@ -94,8 +97,12 @@ function writeFoodDbData(foodObj, foodid){
   });
   return true;
 }
+
 /**
- * @param  {} foodObj
+ *
+ * This function receives a object depicting an item of food, and writes it to the current user's firebase inventory database using the current time as a key
+ * @param  {Object} foodObject a food object containing fields Name (String), Expiry (String) and Quantity (Integer)
+ * @returns boolean value representing if the write request was successful or not
  */
 function writeFoodInvenData(foodObject){
   console.log("Write request to Personal Inventory for food item:");

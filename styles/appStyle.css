@@ -35,7 +35,6 @@ header {
   position: fixed;
   width: 100%;
   z-index: 999;
-  /* height: 5%; */
 }
 
 .nav-toggle {
@@ -105,7 +104,6 @@ nav ul {
 
 nav li {
   margin-bottom: 1em;
-  /* margin-left: 1em; */
   margin-left: 3%;
 }
 
@@ -176,23 +174,13 @@ nav a:hover {
 #main {
   background-color: #fff;
   padding-top: 1.2%;
-  /* display: block; */
-  /* display: flex; */
-  /* background: linear-gradient(23deg, #a80189 0%, #f9003a 100%); */
-  /* height: 200vh; */
   justify-content: center;
-  /* align-items: center  ; */
-
-  /* top: 10%; */
 }
 
 #main .invenSwitchContainer {
-  /* width: 70%; */
   display: grid;
   grid-template-columns: 2fr 3fr 3fr 3fr 2fr;
   column-gap: 0;
-  /* grid-template: "ws btn1 btn2 btn3 ws";
-    grid-template-columns: 1fr 3fr 3fr 3fr 1fr; */
 }
 
 #main .invenSwitchContainer #pantrySwitch {
@@ -215,7 +203,6 @@ nav a:hover {
   color: #fff;
   background: var(--brand-clr);
   border: none;
-  border-radius: 5px;
   padding: 2%;
   display: block;
   margin: 0 auto;
@@ -259,9 +246,7 @@ nav a:hover {
   border: 2px solid var(--brand-clr);
   width: 100%;
   height: 100%;
-  /* display: grid; */
   grid-area: img;
-  /* height: */
 }
 
 #main .expired img {
@@ -398,7 +383,6 @@ nav a:hover {
   padding-top: 1%;
   padding-left: 10%;
   padding-right: 10%;
-
   text-align: center;
 }
 
