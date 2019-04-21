@@ -16,17 +16,16 @@ body {
 	margin: 0;
 	font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    overflow: hidden;
+    /* overflow: hidden; */
+    background: linear-gradient(90deg, rgba(66,246,132,1) 0%, rgba(39,230,159,1) 100%);
 }
 
 .signinContainer{
-    background: linear-gradient(90deg,  rgba(39,230,159,1) 0%, rgba(66,246,132,1) 100%);
     height: 100vh;
 }
 
 .registerContainer{
     height: 100vh;
-    background: linear-gradient(90deg, rgba(66,246,132,1) 0%, rgba(39,230,159,1) 100%);
     display: none;
 }
 
