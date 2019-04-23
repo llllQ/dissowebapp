@@ -132,26 +132,33 @@ input, button {
 
 @media screen and (min-width: 1000px){
 
+    body{
+        background: linear-gradient(90deg, rgba(66,246,132,1) 0%, rgba(39,230,159,1) 100%);
+    }
+
     .signinContainer{
-        background: #fff;
+        background: linear-gradient(90deg, rgba(66,246,132,1) 0%, rgba(39,230,159,1) 100%);
     }
 
     .contentForm{
-        width: 25%;
+        background: #fff;
+        border-radius: 10px;
+        width: 35%;
         margin-top: 0%;
-        top: 10%;
+        margin-top: 20%;
         bottom:15%;
-        padding-top: 5%;
+        /* margin-top: 10%; */
     }
 
     .contentForm h3{
+        padding-top: 0;
+        margin-top: 0;
         font-size: 4em;
         color: var(--brand-clr);
     }
 
     .contentForm p{
-        color: rgba(0,0,0,0.7);
-        font-size: 1em;
+        content: "";    
     }
 
     .contentForm input{
@@ -169,6 +176,22 @@ input, button {
         font-size: 1em;
         color: #000;
     }
+
+    
+.contentForm .inputbox{
+    display: block;
+    border: none;
+    border-bottom: 3px solid var(--brand-clr);
+    background: rgba(255,255,255,0);
+    padding: 5%;
+    margin-bottom: 10%;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 2.5rem;
+
+}
 
     .contentForm ::placeholder{
         color: rgba(0,0,0, 0.7);

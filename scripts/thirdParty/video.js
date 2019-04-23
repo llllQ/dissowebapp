@@ -116,7 +116,7 @@ submitButton.onclick = function() {
 };
 
 /**
- *This function is called the 'submitbtndb' is clicked, and it writes the newly created food object to the community food database before writing it to the current user's food inventory
+ *This function is called when the button 'submitbtndb' is clicked, and it writes the newly created food object to the community food database before writing it to the current user's food inventory
  *
  */
 submitButtonDB.onclick = function() {
@@ -155,8 +155,6 @@ submitButtonDB.onclick = function() {
     if ((pantryRadio.checked == true)) {
       foodObj.category = pantryRadio.value;
     }
-    // console.log("foodObj val:");
-    // console.log(foodObj);
   }
 
   if (writeFoodDbData(foodObj, barcodeVal)) {
