@@ -37,8 +37,6 @@ firebase.auth().onAuthStateChanged(function(user){
     if (user) {
       // User is signed in.
     var currUser = firebase.auth().currentUser;
-    // updateName(currUser, fname);
-    // console.log(currUser);
     console.log(newUser);
     if (newUser != false){
       console.log("hello31");
@@ -83,15 +81,30 @@ function login(){
       });
 }
 
-// function updateName(user, name){
-//     user.updateProfile({displayName: name.valueOf()}).then(function() {
-//       // Update successful.
-//       console.log("Update Successful");
-//     }).catch(function(error) {
-//       // An error happened.
-//       console.log("Update Failed: "+error.message);
-//     });
-// }
+/**
+ * This function listens for 'enter' key press whilst the user focussed on the password text input
+ * On keyup of the enter key, the login() function is called
+ * @param  {} "keyup"
+ */
+
+loginPwordInput.addEventListener("keyup", function(event){
+  if(event.keyCode === 13){
+    event.preventDefault();
+    login();
+  }
+});
+
+/**
+ * This function listens for 'enter' key press whilst the user focussed on the username text input
+ * On keyup of the enter key, the login() function is called
+ * @param  {} "keyup"
+ */
+loginUnameInput.addEventListener("keyup", function(event){
+  if(event.keyCode === 13){
+    event.preventDefault();
+    login();
+  }
+});
 
 /**
  * This function is called upon a register new user press.
@@ -121,9 +134,6 @@ function register(){
         break; 
       }
     });
-
-    // var testUser = firebase.auth().currentUser;
-    // writeUserData(testUser.uid,fname,userEmail);
 }
 /**
  * This function is used to switch index.html from sign-in to register sections.

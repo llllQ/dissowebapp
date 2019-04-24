@@ -45,6 +45,28 @@ const appfunctions = {
       });
   },
 
+  removeItem(){
+    var foodKey = document.getElementById("foodIdStore").value;
+    var freezerRadio = document.getElementById("freezerRadio");
+    var fridgeRadio = document.getElementById("fridgeRadio");
+    var pantryRadio = document.getElementById("pantryRadio");
+    const userId = firebase.auth().currentUser.uid;
+    var foodType;
+    if (freezerRadio.checked == true) {
+      foodType = freezerRadio.value;
+    }
+    if (fridgeRadio.checked == true) {
+      foodType = fridgeRadio.value;
+    }
+    if (pantryRadio.checked == true) {
+      foodType = pantryRadio.value;
+    }
+    firebase.database()
+      .ref("inventories/" + userId + "/" + foodType + "/" + foodKey + "/").remove();
+      inventory.style.display = "block";
+    editScreen.style.display = "none";
+  },
+
   /**
    * This function writes any changes made when a user commits their food item edits.
    *   It uses values in the input fields generated from editFoodItem().
@@ -74,7 +96,7 @@ const appfunctions = {
     if (pantryRadio.checked == true) {
       foodType = pantryRadio.value;
     }
-    var userId = firebase.auth().currentUser.uid;
+    const userId = firebase.auth().currentUser.uid;
     firebase
       .database()
       .ref("inventories/" + userId + "/" + foodType + "/" + foodKey + "/")

@@ -347,7 +347,7 @@ nav a:hover {
   background-color: var(--brand-clr);
 }
 
-#main .foodInfo #btnSubmit {
+#main .foodInfo .btnSubmit {
   cursor: pointer;
   color: #fff;
   background: var(--brand-clr);
