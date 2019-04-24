@@ -1,4 +1,4 @@
-function yummlyRequest(ingredients) {
+function yummlyRequest(ingredients, diet, allergy) {
   var output = document.getElementById("temp");
   const Http = new XMLHttpRequest();
   const app_id = "b96a5430";
@@ -9,6 +9,17 @@ function yummlyRequest(ingredients) {
     element = encodeURIComponent(element.trim());
     parameters += "&allowedIngredient[]=" + element.toLowerCase();
   });
+
+    if (diet !== "none"){
+      console.log("Shout");
+      parameters += "&allowedDiet[]="+diet;
+    }
+    if(allergy !=="none"){
+      parameters += "&allowedAllergy[]="+allergy;
+    }
+
+  
+
   console.log(parameters);
 
   const url =
@@ -17,6 +28,7 @@ function yummlyRequest(ingredients) {
     "&_app_key= " +
     app_key +
     parameters;
+    console.log("url: "+url);
   Http.open("GET", url);
   Http.send();
 
@@ -128,6 +140,18 @@ function createCheckBox(value) {
   }
 }
 
+
+function getUserVals(){
+  var userId = firebase.auth().currentUser.uid;
+return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  // ...
+  var test = snapshot.val();
+  return test;
+});
+}
+
+
 document.getElementById("search").onclick = function() {
   var test = document.getElementById("checkboxHolder").children;
   var checks = [];
@@ -140,5 +164,15 @@ document.getElementById("search").onclick = function() {
       ingredients.push(element.children[0].id);
     }
   });
-  yummlyRequest(ingredients);
+  var data
+  var promise = getUserVals()
+  promise.then(function(result){
+     data = result;
+     yummlyRequest(ingredients, data.diet, data.allergy);
+  })
+  
+  // const userId = firebase.auth().currentUser.uid;
+  // const dietryData = getUserData(userId);
+  // console.log("+++++"+dietryData);
+  
 };

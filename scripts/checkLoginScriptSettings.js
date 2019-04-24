@@ -5,6 +5,7 @@
  */
 firebase.auth().onAuthStateChanged(function(user){
     if (user) {
+      readUserData(firebase.auth().currentUser.uid);
     } else {
         console.log("not signed in");
         window.location = "../index.html";

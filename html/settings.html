@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <link rel="stylesheet" type="text/css" href="../styles/appStyle.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    <!-- <script src="../scripts/app.js"></script> -->
+    <title>FoodSmarter</title>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../resources/logo.webp"
+    />
+  </head>
+  <body onload="readUserData()">
+    <div class="contentWrapper">
+      <header>
+        <h1 class="logo" id="pageTitle">Account Settings</h1>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <nav>
+          <ul>
+            <li class="profile" id="profileName"></li>
+            <li class="sectionTitle">Food Inventory</li>
+            <!-- <li><a href="#"><i class="fas fa-home"></i> Pantry</a></li> -->
+            <li>
+              <a href="Inventory.html"> Inventory</a>
+            </li>
+
+            <li><a href="addFood.html"> Add Item</a></li>
+            <li class="sectionTitle">Settings</li>
+            <li><a href="#"> App Settings</a></li>
+            <!-- <li><a onclick="document.documentElement.requestFullscreen();">  Go Fullscreen</a></li> -->
+            <li><a href="#"> Account Settings</a></li>
+            <li class="sectionTitle">Help and Sign Out</li>
+            <li><a href="#"> Help</a></li>
+            <li><a href="../index.html" onclick="logout()"> Log Out</a></li>
+          </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+      </header>
+    </div>
+    <section id="main">
+      <div class="foodInfo userInfo">
+        <h1>Edit User Info</h1>
+        <h3>Your Name</h3>
+        <input
+          id="userName"
+          class="userName"
+          type="text"
+          placeholder="First Name"
+        />
+
+        <h3>Diets</h3>
+        <select id="dietSelect">
+          <option value="none">None</option>
+          <option value="406^Ketogenic">Ketogenic</option>
+          <option value="388^Lacto vegetarian">Lacto Vegetarian</option>
+          <option value="389^Ovo vegetarian">Ovo Vegetarian</option>
+          <option value="390^Pescetarian">Pescetarian</option>
+          <option value="386^Vegan">Vegan</option>
+          <option value="408^Low FODMAP">Low FODMAP</option>
+          <option value="387^Lacto-ovo vegetarian">Vegetarian</option>
+          <option value="403^Paleo">Paleo</option>
+        </select>
+
+        <h3>Allergies</h3>
+        <select id="allergySelect" onload="readUserData()">
+          <option value="none">None</option>
+          <option value="393^Gluten-Free">Gluten-Free</option>
+          <option value="394^Peanut-Free">Peanut Free</option>
+          <option value="398^Seafood-Free">Seafood Free</option>
+          <option value="399^Sesame-Free">Sesame Free</option>
+          <option value="400^Soy-Free">Soy Free</option>
+          <option value="396^Dairy-Free">Dairy Free</option>
+          <option value="397^Egg-Free">Egg Free</option>
+          <option value="401^Sulfite-Free">Sulfite Free</option>
+          <option value="395^Tree Nut-Free">Tree Nut Free</option>
+          <option value="392^Wheat-Free">Wheat Free</option>
+        </select>
+        <button
+          id="btnSubmit"
+          onclick="updateUserData(document.getElementById('userName').value, document.getElementById('dietSelect').value, document.getElementById('allergySelect').value)"
+        >
+          Update Info
+        </button>
+      </div>
+    </section>
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+    <script src="../scripts/firebaseinit.js"></script>
+    <script src="../scripts/userSettings.js"></script>
+    <script src="../scripts/checkLoginScriptSettings.js"></script>
+ 
+    <!-- <script>window.onload = readUserData()</script> -->
+    
+  </body>
+</html>

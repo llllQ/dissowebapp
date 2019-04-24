@@ -12,6 +12,7 @@ var database = firebase.database();
 
 var foodDBRef = firebase.database().ref('fooddb/');
 
+
 /**
  *
  *This function is used to calculate the difference between the expiry date and the current date returns that result in the form of days
@@ -35,7 +36,9 @@ Date.dateDiff = function(fromdate, expdate) {
 function writeUserData(userId, displayname, email) {
   firebase.database().ref('users/' + userId).set({
     name: displayname,
-    email: email
+    email: email,
+    allergy: "none",
+    diet: "none"
   });
   firebase.database().ref('inventories/' + userId).set({
     fridge: "a",
