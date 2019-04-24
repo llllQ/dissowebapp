@@ -75,7 +75,7 @@
         <h3>Allergies</h3>
         <select id="allergySelect" onload="readUserData()">
           <option value="none">None</option>
-          <option value="393^Gluten-Free">Gluten-Free</option>
+          <option value="393^Gluten-Free">Gluten Free</option>
           <option value="394^Peanut-Free">Peanut Free</option>
           <option value="398^Seafood-Free">Seafood Free</option>
           <option value="399^Sesame-Free">Sesame Free</option>
@@ -88,6 +88,7 @@
         </select>
         <button
           id="btnSubmit"
+          class="btnSubmit"
           onclick="updateUserData(document.getElementById('userName').value, document.getElementById('dietSelect').value, document.getElementById('allergySelect').value)"
         >
           Update Info
@@ -98,8 +99,7 @@
     <script src="../scripts/firebaseinit.js"></script>
     <script src="../scripts/userSettings.js"></script>
     <script src="../scripts/checkLoginScriptSettings.js"></script>
- 
+
     <!-- <script>window.onload = readUserData()</script> -->
-    
   </body>
 </html>
