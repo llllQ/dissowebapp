@@ -172,7 +172,7 @@ const appfunctions = {
             "'" +
             userId +
             "'" +
-            ") src='../resources/carrot.webp'><p class='foodName'>" +
+            ") src='../resources/pencil-edit-button.webp'><p class='foodName'>" +
             element.value.name +
             "</p> <p class='foodExp'>" +
             element.value.expiry +
