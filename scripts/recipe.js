@@ -35,14 +35,10 @@ function yummlyRequest(ingredients, diet, allergy) {
   Http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const data = JSON.parse(Http.responseText);
-      console.log(data);
+      // console.log(data);
+      output.innerHTML +=
+        "<button onclick='showSearchContainer()'>Back to Search</button>";
       data.matches.forEach(element => {
-        // if (element.recipeName.length > 23){
-        //     element.recipeName = (element.recipeName.substr(0, 20) + "...")
-        // }
-        // <a href='https://www.yummly.co.uk/recipe/" +
-        //   element.id +
-        //   "' target='_blank'></a>
         output.innerHTML +=
           "<a href='https://www.yummly.co.uk/recipe/" +
           element.id +
@@ -56,8 +52,7 @@ function yummlyRequest(ingredients, diet, allergy) {
           element.sourceDisplayName +
           "</p></li></a>";
       });
-      output.innerHTML +=
-        "<button onclick='showSearchContainer()'>Back to Search</button>";
+      
     }
   };
   document.getElementById("searchContainer").style.display = "none";
