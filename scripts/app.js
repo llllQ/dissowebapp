@@ -50,6 +50,8 @@ const appfunctions = {
     var freezerRadio = document.getElementById("freezerRadio");
     var fridgeRadio = document.getElementById("fridgeRadio");
     var pantryRadio = document.getElementById("pantryRadio");
+    var inventory = document.getElementById("invenList");
+    var editScreen = document.getElementById("foodInfo");
     const userId = firebase.auth().currentUser.uid;
     var foodType;
     if (freezerRadio.checked == true) {

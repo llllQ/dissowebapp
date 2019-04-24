@@ -190,6 +190,16 @@ var tick = function() {
 };
 tick();
 
+function getFoodVals(barcode){
+return firebase.database().ref('/fooddb/' + barcode).once('value').then(function(snapshot) {
+  // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  // ...
+  
+  var test = snapshot.val();
+  return test;
+});
+}
+
 /**
  *
  *
@@ -207,11 +217,12 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
     console.log("186");
     console.log(barcodeVal);
     console.log("186");
-    const foodObj = readFoodDbData(barcodeVal);
-    console.log("190");
-    console.log(foodObj);
-    console.log("190");
-    if (foodObj != null) {
+    // const foodObj = readFoodDbData(barcodeVal);
+    var foodObj;
+    var promise = getFoodVals(barcodeVal)
+    promise.then(function(result){
+     foodObj = result;
+     if (foodObj != null) {
       scanningArea.style.display = "none";
       confirmationArea.style.display = "block";
       submitButton.style.display = "block";
@@ -245,6 +256,11 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
         "Food Item unknown, please add it anyway so we can update our food database so this won't happen next time you scan this item"
       );
     }
+     
+    });
+
+    
+  
   }
 };
 
