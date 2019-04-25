@@ -1,3 +1,10 @@
+/**
+ *
+ *
+ * @param {*} ingredients
+ * @param {*} diet
+ * @param {*} allergy
+ */
 function yummlyRequest(ingredients, diet, allergy) {
   var output = document.getElementById("temp");
   const Http = new XMLHttpRequest();
@@ -32,6 +39,10 @@ function yummlyRequest(ingredients, diet, allergy) {
   Http.open("GET", url);
   Http.send();
 
+  /**
+   *
+   *
+   */
   Http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const data = JSON.parse(Http.responseText);
@@ -58,11 +69,20 @@ function yummlyRequest(ingredients, diet, allergy) {
   document.getElementById("searchContainer").style.display = "none";
 }
 
+/**
+ *
+ *
+ */
 function showSearchContainer() {
   document.getElementById("temp").innerHTML = "";
   document.getElementById("searchContainer").style.display = "block";
 }
 
+/**
+ *
+ *
+ * @param {*} foodname
+ */
 function queryInventory(foodname) {
   const userId = firebase.auth().currentUser.uid;
   const db = firebase.database();
@@ -114,6 +134,10 @@ function queryInventory(foodname) {
   });
 }
 
+/**
+ *
+ *
+ */
 document.getElementById("itagSearch").onclick = function() {
   document.getElementById('search').style.display = "block";
   const searchparam = document.getElementById("searchBox").value;
@@ -121,6 +145,11 @@ document.getElementById("itagSearch").onclick = function() {
   queryInventory(searchparam);
 };
 
+/**
+ *This function creates a HTML checkbox element with the value passed in as a parameter
+ *
+ * @param {*} value The name value of a food item searched for by the user
+ */
 function createCheckBox(value) {
   console.log(value);
   if (value) {
@@ -136,17 +165,24 @@ function createCheckBox(value) {
 }
 
 
+/**
+ *This function is used to return user data, which includes the dietry requirments necessary for Yummly API query parameters
+ *
+ * @returns {Object} userObj - an object representing the current user, including diet and allerfy data to be used in Yummly query
+ */
 function getUserVals(){
   var userId = firebase.auth().currentUser.uid;
 return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  // ...
-  var test = snapshot.val();
-  return test;
+  var userObj = snapshot.val();
+  return userObj;
 });
 }
 
 
+/**
+ *This function is called when the search html button is clicked. It collates parameters required for Yummly query from the HTML page and User Database before calling the Yummly Request
+ *
+ */
 document.getElementById("search").onclick = function() {
   var test = document.getElementById("checkboxHolder").children;
   var checks = [];
@@ -164,10 +200,5 @@ document.getElementById("search").onclick = function() {
   promise.then(function(result){
      data = result;
      yummlyRequest(ingredients, data.diet, data.allergy);
-  })
-  
-  // const userId = firebase.auth().currentUser.uid;
-  // const dietryData = getUserData(userId);
-  // console.log("+++++"+dietryData);
-  
+  });  
 };
