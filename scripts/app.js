@@ -1,4 +1,3 @@
-const appfunctions = {
   /**
    * This function is called when a user selects a food item from their inventory that they wish to edit details of. This is intiated when a user clicks on the food item's icon.
    *  The purpose of this function is to bring up a 'edit' html page, loaded with the info stored about the food item being edited
@@ -6,7 +5,7 @@ const appfunctions = {
    * @param  {} foodType expects the category of the food (fridge/freezer/pantry) used to complete the db reference to load the food item being edited
    * @param  {} userId epects the id value of the currently signed in user used to complete the db reference to load the food item being edited.
    */
-  editFoodItem(foodKey, foodType, userId) {
+  function editFoodItem(foodKey, foodType, userId) {
     var inventory = document.getElementById("invenList");
     var editScreen = document.getElementById("foodInfo");
     var foodNameDisplay = document.getElementById("foodName");
@@ -43,9 +42,9 @@ const appfunctions = {
         }
         foodIdStore.value = foodKey;
       });
-  },
+  };
 
-  removeItem(){
+  function removeItem(){
     var foodKey = document.getElementById("foodIdStore").value;
     var freezerRadio = document.getElementById("freezerRadio");
     var fridgeRadio = document.getElementById("fridgeRadio");
@@ -67,13 +66,13 @@ const appfunctions = {
       .ref("inventories/" + userId + "/" + foodType + "/" + foodKey + "/").remove();
       inventory.style.display = "block";
     editScreen.style.display = "none";
-  },
+  };
 
   /**
    * This function writes any changes made when a user commits their food item edits.
    *   It uses values in the input fields generated from editFoodItem().
    */
-  writeEdit() {
+  function writeEdit() {
     var inventory = document.getElementById("invenList");
     var editScreen = document.getElementById("foodInfo");
     var foodNameDisplay = document.getElementById("foodName");
@@ -109,24 +108,24 @@ const appfunctions = {
       });
     inventory.style.display = "block";
     editScreen.style.display = "none";
-  },
+  };
 
   /**
    * this function changes the navbar header to represent the food inventory currently being shown in #main's foodlist.
    * It is called whenever a user navigates to one of their three inventories (fridge/freezer/pantry).
    * @param  {String} foodType expects one of {"fridge","freezer","pantry"}
    */
-  changeTitle(foodType) {
+  function changeTitle(foodType) {
     var heading = document.getElementById("pageTitle");
     heading.innerHTML = foodType + " Inventory";
-  },
+  };
 
   /**
    * This function displays food items stored in the current user's relevant area from their food inventory in main html section
    * @param  {String} foodType expects one of {"fridge","freezer","pantry"} used during database read request
    * @returns {} no returnable, DOM manipulation used to display database read request
    */
-  populateList(foodType) {
+ function populateList(foodType) {
     var pantrySwitch = document.getElementById("pantrySwitch");
     var fridgeSwitch = document.getElementById("fridgeSwitch");
     var freezerSwitch = document.getElementById("freezerSwitch");
@@ -147,7 +146,7 @@ const appfunctions = {
         freezerSwitch.classList.remove("current");
         break;
     }
-    appfunctions.changeTitle(foodType);
+    changeTitle(foodType);
     document.getElementById("nav-toggle").checked = false;
     var userId = firebase.auth().currentUser.uid;
     return firebase
@@ -186,7 +185,7 @@ const appfunctions = {
             foodClass +
             "' id='" +
             element.key +
-            "'><img class='foodIcon' onclick=appfunctions.editFoodItem(" +
+            "'><img class='foodIcon' onclick=editFoodItem(" +
             element.key +
             "," +
             "'" +
@@ -205,9 +204,9 @@ const appfunctions = {
             "</p>";
         });
       });
-  },
+  };
   
-  getFoodObjImg(userId, foodType, filename) {
+  function getFoodObjImg(userId, foodType, filename) {
     //     var storage = firebase.storage()
     //     var pathref = storage.ref("https://firebasestorage.googleapis.com/v0/b/disso-70-100.appspot.com/o/9voizvBqsMOukDXp6kXXB5Smyeu2%2Finventories%2Ffridge%2F1.jpg?alt=media&token=5399ec9a-af29-4564-827c-e26123095965");
     //     // Create a reference from a Google Cloud Storage URI
@@ -226,6 +225,4 @@ const appfunctions = {
 
     var test = imagesRef.getDownloadURL();
     return test;
-  }
-};
-module.exports = appfunctions;
+  };

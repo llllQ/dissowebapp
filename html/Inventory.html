@@ -30,13 +30,13 @@
             <li class="sectionTitle">Food Inventory</li>
             <!-- <li><a href="#"><i class="fas fa-home"></i> Pantry</a></li> -->
             <li>
-              <a onclick="appfunctions.populateList('pantry')"> Pantry</a>
+              <a onclick=" populateList('pantry')"> Pantry</a>
             </li>
             <li>
-              <a onclick="appfunctions.populateList('fridge')"> Fridge</a>
+              <a onclick="populateList('fridge')"> Fridge</a>
             </li>
             <li>
-              <a onclick="appfunctions.populateList('freezer')"> Freezer</a>
+              <a onclick="populateList('freezer')"> Freezer</a>
             </li>
             <li><a href="addFood.html"> Add Item</a></li>
             <li class="sectionTitle">Settings</li>
@@ -57,9 +57,9 @@
     <section id="main">
       <div id="invenList">
           <div class="invenSwitchContainer">
-            <button id="pantrySwitch" class="invenBtn" onclick="appfunctions.populateList('pantry')">Pantry</button>
-            <button id="fridgeSwitch" class="invenBtn" onclick="appfunctions.populateList('fridge')">Fridge</button>
-            <button id="freezerSwitch" class="invenBtn" onclick="appfunctions.populateList('freezer')">Freezer</button>
+            <button id="pantrySwitch" class="invenBtn" onclick="populateList('pantry')">Pantry</button>
+            <button id="fridgeSwitch" class="invenBtn" onclick="populateList('fridge')">Fridge</button>
+            <button id="freezerSwitch" class="invenBtn" onclick="populateList('freezer')">Freezer</button>
           </div>
         <ul id="foodList">
           <li class="foodItem">
@@ -67,7 +67,7 @@
           </li>
             <!-- <img
               class="foodIcon"
-              onclick="appfunctions.itemSelected()"
+              onclick="itemSelected()"
               src="../resources/placeholder.webp"
             />
             <p class="foodName">Unable To</p>
@@ -139,11 +139,11 @@
             <span class="freezerSpan">Freezer</span>
           </label>
         </div>
-        <button id="btnSubmit" class="btnSubmit" onclick="appfunctions.writeEdit()">Confirm Changes</button>
+        <button id="btnSubmit" class="btnSubmit" onclick="writeEdit()">Confirm Changes</button>
         <span style="font-size: 2em; background-color:#fff; padding: 0 10px;">
             or   <!--Padding is optional-->
         </span>
-        <button id="btnRemove" class="btnSubmit" onclick="appfunctions.removeItem()">Remove Item</button>
+        <button id="btnRemove" class="btnSubmit" onclick="removeItem()">Remove Item</button>
         <input type="radio" id="foodIdStore"/>
       </div>
     </section>

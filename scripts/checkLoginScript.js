@@ -14,7 +14,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
       document.getElementById("profileName").innerHTML = "Hi! " + user1.email;
     }
-    appfunctions.populateList("fridge");
+    populateList("fridge");
   } else {
     console.log("not signed in");
     window.location = "../index.html";
@@ -23,6 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 /**
  *This function changes the current user's authentication state to be signed out. This then invokes the onAuthStateChanged() firebase function
+
  */
 function logout() {
   firebase.auth().signOut();
