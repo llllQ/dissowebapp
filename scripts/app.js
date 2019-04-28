@@ -176,7 +176,7 @@
           if ( daysLeft < 2) {
             foodClass += " nearlyExpired";
           }
-          if (daysLeft <= 0){
+          if (daysLeft < 0){
             foodClass += " expired";
           }
           list.innerHTML +=
