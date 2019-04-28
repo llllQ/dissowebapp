@@ -172,12 +172,11 @@
             dateFormatted[1] - 1,
             dateFormatted[0]
           );
-          if (Date.dateDiff(today, dateFormatted) < 2) {
-            console.log(
-              "Date difference: " + Date.dateDiff(dateFormatted, today)
-            );
-            console.log("today date: " + today);
-            console.log("expiry date: " + dateFormatted);
+          const daysLeft = Date.dateDiff(today, dateFormatted)
+          if ( daysLeft < 2) {
+            foodClass += " nearlyExpired";
+          }
+          if (daysLeft <= 0){
             foodClass += " expired";
           }
           list.innerHTML +=

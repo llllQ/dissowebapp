@@ -243,25 +243,33 @@ nav a:hover {
 
 #main .foodItem img {
   border-radius: 100%;
-  border: 2px solid var(--brand-clr);
+  border: 3px solid var(--brand-clr);
   width: 100%;
   height: 100%;
   grid-area: img;
 }
 
+#main .nearlyExpired img {
+  border: 3px solid rgb(235, 125, 0);
+}
+
 #main .expired img {
-  border: 1px solid var(--err-clr);
+  border: 3px solid var(--err-clr);
 }
 
 #main .foodItem p {
-  border-bottom: 1px solid var(--brand-clr);
+  border-bottom: 3px solid var(--brand-clr);
   font-size: 2em;
   margin: 0;
   margin-bottom: 3%;
 }
 
+#main .nearlyExpired p {
+  border-bottom: 3px solid rgb(235, 125, 0);;
+}
+
 #main .expired p {
-  border-bottom: 1px solid var(--err-clr);
+  border-bottom: 3px solid var(--err-clr);
 }
 
 #main .foodItem .foodName {
