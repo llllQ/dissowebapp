@@ -423,6 +423,15 @@ nav a:hover {
 
 /* End of bottom navbar styling */
 
+/* Start of Settings Styling */
+
+select {
+  width: 50%;
+  font-size: 30px;
+}
+
+/* End of Settings Styling */
+
 /* Desktop View Styling */
 @media screen and (min-width: 1000px) {
   .logo {
