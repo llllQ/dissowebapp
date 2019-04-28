@@ -194,8 +194,12 @@ function getFoodVals(barcode){
 return firebase.database().ref('/fooddb/' + barcode).once('value').then(function(snapshot) {
   // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
   // ...
-  
   var test = snapshot.val();
+  const ext = test.expiry;
+    var tempDate = new Date();
+    tempDate.setDate(tempDate.getDate() + ext);
+    test.expiry = tempDate.getDate()+"/"+(tempDate.getMonth()+1)+"/"+(tempDate.getYear()+1900);
+  
   return test;
 });
 }
@@ -232,6 +236,10 @@ var decodeCallback = function(ptr, len, resultIndex, resultCount) {
       console.log("val of foodObj in videojs: ");
       console.log(foodObj);
       foodNameDisplay.value = foodObj.name;
+      
+      // var expiry = new Date();
+      // expiry.setDate(expiry.getDate() + foodObj.expiry);
+
       foodExpiryDisplay.value = foodObj.expiry;
       foodQuantityDisplay.value = foodObj.quantity;
       switch (foodObj.category) {
