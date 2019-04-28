@@ -391,6 +391,8 @@ border: 1px green;
 
     .logo{
         font-size: 1.7rem;
+    margin-top: 1%;
+    margin-bottom: 1%;
     }
 
     .nav-toggle-label{
@@ -450,6 +452,11 @@ border: 1px green;
         /* margin-left: 1em; */
         margin-left: 2.5%;
     }
+
+    nav li .desktopOnly{
+        display: block;
+    }
+
 
     nav .profile {
         font-size: 1.5rem;

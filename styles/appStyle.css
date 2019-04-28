@@ -107,6 +107,10 @@ nav li {
   margin-left: 3%;
 }
 
+nav li .desktopOnly {
+  display: none;
+}
+
 nav .profile {
   font-size: 2rem;
   text-decoration: none;
@@ -436,6 +440,8 @@ select {
 @media screen and (min-width: 1000px) {
   .logo {
     font-size: 1.7rem;
+    margin-top: 1%;
+    margin-bottom: 1%;
   }
 
   .nav-toggle-label {
@@ -472,7 +478,7 @@ select {
     top: 10px;
   }
 
-  nav {
+  header nav {
     position: absolute;
     text-align: left;
     top: 100%;
@@ -494,6 +500,10 @@ select {
     margin-bottom: 1em;
     /* margin-left: 1em; */
     margin-left: 2.5%;
+  }
+
+  nav li .desktopOnly{
+    display: block;
   }
 
   nav .profile {
@@ -556,4 +566,69 @@ select {
     opacity: 1;
     transition: opacity 250ms ease-in-out 250ms;
   }
+
+  #main .invenSwitchContainer {
+    display: grid;
+    grid-template-columns: 10fr 3fr 3fr 3fr 10fr;
+    column-gap: 0;
+  }
+
+  #main .invenSwitchContainer .invenBtn {
+    font-size: 1em;
+  }
+
+  #main .foodItem{
+    width: 30%;
+    left: calc(50% - 15%);
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 20px;
+    margin-top: 20px;
+
+  }
+  #main .foodItem p{
+    font-size: 1em;
+  }
+
+  #main .foodInfo {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+
+  #main .foodInfo h1{
+    font-size: 2.5em;
+  }
+  #main .foodInfo h3{
+    font-size: 1.4em;
+  }
+
+  #main .foodInfo input{
+    font-size: 1em;
+  }
+
+  #main select{
+    font-size: 1em;
+  }
+
+  #main #btnSubmit{
+    font-size: 1em;
+    margin-top: 30%;
+  }
+
+  
+  #leftDiet{
+    float: left;
+  }
+
+  #rightAllergy{
+    float: right;
+  }
+
+  #footer {
+    display: none;
+  }
+
+
+
 }

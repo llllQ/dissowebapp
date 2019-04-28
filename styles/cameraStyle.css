@@ -305,8 +305,6 @@ header {
 }
 
 .footer{
-    /* display: none; */
-    /* color: #000; */
     border-top-width: 1%;
     border-top-color: #bdbdbd;
     border-top-style: solid;
@@ -353,3 +351,188 @@ header {
     margin-top: 0;
     font-size: 1.8rem;
 }
+
+
+/* Desktop View Styling */
+@media screen and (min-width: 1000px) {
+    .logo {
+      font-size: 1.7rem;
+      margin-top: 1%;
+      margin-bottom: 1%;
+    }
+  
+    .nav-toggle-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 1em;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  
+    .nav-toggle-label span,
+    .nav-toggle-label span:before,
+    .nav-toggle-label span:after {
+      display: block;
+      background: #fff;
+      height: 2px;
+      width: 2em;
+      position: relative;
+    }
+  
+    .nav-toggle-label span:before,
+    .nav-toggle-label span:after {
+      content: "";
+      position: absolute;
+    }
+  
+    .nav-toggle-label span:before {
+      bottom: 10px;
+    }
+  
+    .nav-toggle-label span:after {
+      top: 10px;
+    }
+  
+    header nav {
+      position: absolute;
+      text-align: left;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      width: 100%;
+      transform: scale(1, 0);
+      transform-origin: top;
+      transition: transform 400ms ease-in-out;
+    }
+  
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  
+    nav li {
+      margin-bottom: 1em;
+      /* margin-left: 1em; */
+      margin-left: 2.5%;
+    }
+  
+    nav .profile {
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: var(--brand-clr);
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+      margin-top: 1em;
+      margin-bottom: 0.5rem;
+    }
+  
+    nav .sectionTitle {
+      color: #bdbdbd;
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+      padding-top: 15px;
+    }
+  
+    nav .notFirst {
+      border-top-color: #bdbdbd;
+      border-top-style: solid;
+      border-top-width: 1px;
+    }
+  
+    nav a {
+      cursor: pointer;
+      color: #000;
+      text-decoration: none;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 150ms ease-in-out;
+    }
+  
+    nav a:hover {
+      color: var(--brand-clr);
+    }
+  
+    .nav-toggle:checked ~ nav {
+      transform: scale(1, 1);
+      background: white;
+      box-shadow: 0px 3px 2px 2px rgba(53, 53, 53, 0.15);
+    }
+  
+    .nav-toggle:checked ~ nav a {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 250ms;
+    }
+  
+    .nav-toggle:checked ~ nav .profile {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 250ms;
+    }
+  
+    .nav-toggle:checked ~ nav .sectionTitle {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out 250ms;
+    }
+
+    #confirmFooter{
+        display: none;
+    }
+    
+    .footer{
+        border-top: 0;
+        background-color:#fff;
+        border-radius: 5px 5px 0px 0px;
+        color: #bdbdbd;
+        position: fixed;
+        z-index: 998;
+        width: 100%;
+        bottom: 0;
+        padding-top: 1%;
+        padding-left: 10%;
+        padding-right: 10%;
+       
+        text-align: center;
+        width: 50%;
+        left: calc(50% - 25%);
+    
+    }
+    
+    .footer a{
+        opacity: 1;
+        color: #bdbdbd;
+        font-size: 1em;
+    }
+    
+    .footer #btmNav{
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+    .footer li{
+        font-size: 2em;
+        margin:0;
+        /* margin-left: 20%;
+        margin-right: 20%; */
+    }
+    .footer #output{
+        overflow: hidden;
+        font-size: 1.8rem;
+        padding-top: 30%;
+    }
+    
+    
+    
+    .footer p{
+        margin-top: 0;
+        font-size: 1rem;
+        margin:0;
+    }
+  }
+  
