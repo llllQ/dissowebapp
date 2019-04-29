@@ -6,6 +6,9 @@ The application is hosted on https://foodsmarter.site for viewing on a mobile de
 
 ## Registering
 You can create an account using an email and password. Password resetting is not currently supported so please make a note of it, if you do lose access to your account please contact mp499@sussex.ac.uk to have your data recovered.
+If you don't want to create a new account there is a test user with the following credentials:
+email:      test@gmail.com
+password:   password
 
 ## Adding Food Items
 To scan a barcode a device with a camera is required. As discussed in the report, Safari has compatability issues with the camera library so an Android browser is required for mobile use.
