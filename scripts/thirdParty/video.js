@@ -122,10 +122,13 @@ submitButton.onclick = function() {
 submitButtonDB.onclick = function() {
   var foodObj = {};
   const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-  if (foodNameDisplay.value = "") {
+  if (foodNameDisplay.value == "") {
     alert("boop name red");
     return;
   } else {
+    console.log("here");
+    console.log(foodNameDisplay.value);
+    console.log("here");
     foodObj.name = foodNameDisplay.value;
   }
 
@@ -161,6 +164,10 @@ submitButtonDB.onclick = function() {
       foodObj.category = pantryRadio.value;
     }
   }
+
+  console.log("jhsafhj");
+  console.log(foodObj);
+  console.log("jhsafhj");
 
   if (writeFoodDbData(foodObj, barcodeVal)) {
     alert(
