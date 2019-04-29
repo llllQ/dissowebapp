@@ -123,7 +123,7 @@ submitButtonDB.onclick = function() {
   var foodObj = {};
   const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
   if (foodNameDisplay.value == "") {
-    alert("boop name red");
+    alert("Please enter Product Name");
     return;
   } else {
     console.log("here");
@@ -133,14 +133,14 @@ submitButtonDB.onclick = function() {
   }
 
   if (!foodExpiryDisplay.value.match(dateformat)) {
-    alert("boop expiry red");
+    alert("Please enter Date with Format DD/MM/YYYY");
     return;
   } else {
     foodObj.expiry = foodExpiryDisplay.value;
   }
 
   if (foodQuantityDisplay.value == "") {
-    alert("boop quantity red");
+    alert("Please Enter Product Quantity");
     return;
   } else {
     foodObj.quantity = foodQuantityDisplay.value;
@@ -151,7 +151,7 @@ submitButtonDB.onclick = function() {
     fridgeRadio.checked == false &&
     pantryRadio.checked == false
   ) {
-    alert("boop category red");
+    alert("Please enter Product Category");
     return;
   } else {
     if ((freezerRadio.checked == true)) {
