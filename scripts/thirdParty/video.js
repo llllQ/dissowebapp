@@ -121,20 +121,24 @@ submitButton.onclick = function() {
  */
 submitButtonDB.onclick = function() {
   var foodObj = {};
-  if (foodNameDisplay.value == "") {
+  const dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+  if (foodNameDisplay.value = "") {
     alert("boop name red");
+    return;
   } else {
     foodObj.name = foodNameDisplay.value;
   }
 
-  if (foodExpiryDisplay.value == "") {
+  if (!foodExpiryDisplay.value.match(dateformat)) {
     alert("boop expiry red");
+    return;
   } else {
     foodObj.expiry = foodExpiryDisplay.value;
   }
 
   if (foodQuantityDisplay.value == "") {
     alert("boop quantity red");
+    return;
   } else {
     foodObj.quantity = foodQuantityDisplay.value;
   }
@@ -145,6 +149,7 @@ submitButtonDB.onclick = function() {
     pantryRadio.checked == false
   ) {
     alert("boop category red");
+    return;
   } else {
     if ((freezerRadio.checked == true)) {
       foodObj.category = freezerRadio.value;
@@ -195,6 +200,9 @@ return firebase.database().ref('/fooddb/' + barcode).once('value').then(function
   // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
   // ...
   var test = snapshot.val();
+  if(test == null){
+    return test;
+  }
   const ext = test.expiry;
     var tempDate = new Date();
     tempDate.setDate(tempDate.getDate() + ext);

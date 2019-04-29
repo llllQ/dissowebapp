@@ -183,7 +183,7 @@ nav a:hover {
 
 #main .invenSwitchContainer {
   display: grid;
-  grid-template-columns: 2fr 3fr 3fr 3fr 2fr;
+  grid-template-columns: 2fr 3fr 3fr 3fr 1fr 1fr;
   column-gap: 0;
 }
 
@@ -200,6 +200,12 @@ nav a:hover {
 #main .invenSwitchContainer #freezerSwitch {
   width: 100%;
   grid-column: 4;
+}
+
+#main .invenSwitchContainer #toggleSort{
+  margin: 10px;
+  /* width: 100%; */
+  grid-column: 6;
 }
 
 #main .invenSwitchContainer .invenBtn {
@@ -269,7 +275,7 @@ nav a:hover {
 }
 
 #main .nearlyExpired p {
-  border-bottom: 3px solid rgb(235, 125, 0);;
+  border-bottom: 3px solid rgb(235, 125, 0);
 }
 
 #main .expired p {

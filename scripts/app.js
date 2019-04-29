@@ -151,7 +151,7 @@
     var userId = firebase.auth().currentUser.uid;
     return firebase
       .database()
-      .ref("/inventories/" + userId + "/" + foodType + "/")
+      .ref("/inventories/" + userId + "/" + foodType + "/").orderByChild('name')
       .on("value", function(snapshot) {
         var foodArray = [];
         snapshot.forEach(element => {

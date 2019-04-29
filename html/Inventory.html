@@ -61,6 +61,7 @@
             <button id="pantrySwitch" class="invenBtn" onclick="populateList('pantry')">Pantry</button>
             <button id="fridgeSwitch" class="invenBtn" onclick="populateList('fridge')">Fridge</button>
             <button id="freezerSwitch" class="invenBtn" onclick="populateList('freezer')">Freezer</button>
+            <button id="toggleSort" class="invenBtn" onclick="toggleSort()"></button>
           </div>
         <ul id="foodList">
           <li class="foodItem">
@@ -149,7 +150,7 @@
       </div>
     </section>
 
-    <!-- <div class="contentWrapper"> -->
+    <div class="contentWrapper">
       <section id="footer">
         <nav>
           <ul id="btmNav">
@@ -171,7 +172,7 @@
           </ul>
         </nav>
       </section>
-    <!-- </div> -->
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
     <script src="../scripts/firebaseinit.js"></script>
