@@ -46,6 +46,9 @@ function yummlyRequest(ingredients, diet, allergy) {
   Http.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const data = JSON.parse(Http.responseText);
+      if (data.totalMatchCount == 0){
+        output.innerHTML += "<h1>No Matching Recipes<h1>"+ "<button onclick='showSearchContainer()'>Back to Search</button>";
+      } else{
       // console.log(data);
       output.innerHTML +=
         "<button onclick='showSearchContainer()'>Back to Search</button>";
@@ -63,7 +66,7 @@ function yummlyRequest(ingredients, diet, allergy) {
           element.sourceDisplayName +
           "</p></li></a>";
       });
-      
+    }
     }
   };
   document.getElementById("searchContainer").style.display = "none";
